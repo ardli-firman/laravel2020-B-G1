@@ -2,73 +2,81 @@
 
 @section('content')
     @include('layouts.headers.cards')
-    @if (session('success'))
-                <div class="alert alert-success alert-dismissible fade show" role="alert">
-                        <span class="alert-inner--text">{{session('success')}}</span>
-                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                            <span aria-hidden="true">&times;</span>
-                        </button>
+
+    <div class="container-fluid mt--7">
+        @if ($errors->any())
+            @foreach ($errors->all() as $error)
+            <div class="alert alert-warning alert-dismissible fade show" role="alert">
+                    <span class="alert-inner--text">{{$error}}</span>
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
             </div>
+            @endforeach
         @endif
-
-    <!-- <div class="container-fluid mt--7">
-        <div class="row"> -->
-        <div class="card-deck mr-4 ml-4 mt--3">
-
-    <div class="card mt--8">
+        @if (session('success'))
+        <div class="alert alert-success alert-dismissible fade show" role="alert">
+                <span class="alert-inner--text">{{session('success')}}</span>
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+        </div>
+        @endif
+        <div class="row">
 
             {{-- Dosen pembimbing --}}
 
-            <div class="col">
-                <!-- <div class="card shadow"> -->
-                    <div class="row justify-content-center">
-                        <div class="col-lg-3 order-lg-2">
-                            <div class="card-profile-image">
-                                <a href="#">
-                                    <img src="https://argon-dashboard-laravel.creative-tim.com/argon/img/theme/team-4-800x800.jpg" class="rounded-circle">
-                                </a>
+            @if ($ta->status_ta == 'diterima')
+                @forelse ($pembimbings as $keys => $pembimbing)
+                    @if ($pembimbing != null)
+                        <div class="col-md-6">
+                                <div class="card shadow">
+                                    <div class="row justify-content-center">
+                                        <div class="col-lg-3 order-lg-2">
+                                            <div class="card-profile-image">
+                                                <a href="#">
+                                                    <img src="https://argon-dashboard-laravel.creative-tim.com/argon/img/theme/team-4-800x800.jpg" class="rounded-circle">
+                                                </a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="card-header py-6">
+
+                                    </div>
+                                    <div class="card-body pt-0 pt-md-4">
+                                        <div class="row">
+                                            <div class="col">
+                                                <h1>{{$keys}}</h1>
+                                            </div>
+                                            <div class="col">
+                                                <h1>Email</h1>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col">
+                                                <span>{{$pembimbing->dosen->nama}}</span>
+                                            </div>
+                                            <div class="col">
+                                                <span>{{$pembimbing->dosen->email}}</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
-                        </div>
-                    </div>
+                        @endif
+                    @empty
 
-                    <div class="card-header py-6">
-                    </div>
-
-                    <div class="card-body pt-0 pt-md-4">
-                        <div class="row">
-                            <div class="col">
-                                <h1>Dosen</h1>
-                            </div>
-                            <div class="col">
-                                <h1>Email</h1>
-                            </div>
-                        </div>
-
-                        <div class="row">
-                            <div class="col">
-                                <span>Nama Dosen</span>
-                            </div>
-
-                            <div class="col">
-                                <span>Email</span>
-                            </div>
-                        </div>
-
-                    <!-- </div> card show -->
-                </div>
-            </div>
-
+                @endforelse
+            @endif
             {{-- End dosbing --}}
 
         </div>
 
-
-
-        <!-- <div class="row mt-3"> -->
+        <div class="row mt-3">
 
         {{-- Detail TA --}}
-            
-                <div class="card mt--8">
+            <div class="col">
+                <div class="card">
                     <div class="card-header">
                         <h1>Detail Judul TA</h1>
                     </div>
@@ -91,13 +99,16 @@
                             <br>
                             <span class="btn btn-sm btn-success">{{$ta->status_ta}}</span>
                         </div>
+                        @if ($ta->status_ta != 'diterima')
+                            <a href="{{route('mahasiswa.TA.edit',$ta->id)}}" class="btn btn-primary">Edit</a>
+                        @endif
                         {!! Form::close() !!}
                     </div>
                 </div>
 
-            
+            </div>
         {{-- End detail --}}
-        <!-- </div> -->
+        </div>
 
     </div>
 @endsection

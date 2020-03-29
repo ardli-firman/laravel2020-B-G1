@@ -35,7 +35,7 @@
                         </div>
                         <div class="form-group">
                             {!! Form::label('nim', 'NIM') !!}
-                            {!! Form::text('nim', $mahasiswa->nim, ['class'=>'form-control form-control-alternative','placeholder'=>'NIM']) !!}
+                            {!! Form::text('nim', $mahasiswa->nim, ['class'=>'form-control form-control-alternative','placeholder'=>'NIM','disabled']) !!}
                         </div>
                         <div class="form-group">
                             {!! Form::label('semester', 'Semester') !!}

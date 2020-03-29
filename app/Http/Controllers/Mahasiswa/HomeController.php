@@ -3,14 +3,23 @@
 namespace App\Http\Controllers\Mahasiswa;
 
 use App\Http\Controllers\Controller;
+use App\Http\Services\TugasAkhir\TugasAkhirBaseService;
 use Illuminate\Http\Request;
 
 class HomeController extends Controller
 {
 
+    private $tugasAkhirService;
+
+    public function __construct(TugasAkhirBaseService $tugasAkhirService)
+    {
+        $this->tugasAkhirService = $tugasAkhirService;
+    }
+
     public function index()
     {
-        return view('mahasiswa.dashboard');
+        $ta = $this->tugasAkhirService->getTugasAkhir();
+        return view('mahasiswa.dashboard', compact('ta'));
     }
 
     /**

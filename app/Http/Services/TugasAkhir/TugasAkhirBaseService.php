@@ -36,7 +36,11 @@ class TugasAkhirBaseService
 
     public function getTugasAkhir()
     {
-        return $this->auth->user()->judul_tugas_akhir->first();
+        $ta = $this->auth->user()->judul_tugas_akhir;
+        if ($ta != null) {
+            return $ta->first();
+        }
+        return false;
     }
 
     public function insert()
@@ -57,6 +61,16 @@ class TugasAkhirBaseService
         $this->request->validate(['status_ta' => 'required']);
         $res = JudulTugasAkhir::where('nim', $nim)->update(['status_ta' => $this->request->status_ta]);
         return $res;
+    }
+
+    public function updateTA($id)
+    {
+        $this->request->validate($this->rules());
+        $TA = JudulTugasAkhir::find($id);
+        $TA->judul = $this->request->judul;
+        $TA->deskripsi = $this->request->deskripsi;
+        $TA->manfaat = $this->request->manfaat;
+        return $TA->save();
     }
 
     public function delete($id)

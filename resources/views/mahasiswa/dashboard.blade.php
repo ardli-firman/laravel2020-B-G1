@@ -14,7 +14,11 @@
                                 <h5 class="card-title text-uppercase text-muted mb-0">
                                     Status judul TA Anda
                                 </h5>
-                                <span class="h2 font-weight-bold mb-0"><button class="btn btn-sm btn-success">Diterima</button></span>
+                                @if ($ta != null)
+                                <span class="h2 font-weight-bold mb-0"><button class="btn btn-sm btn-success">{{ucfirst($ta->status_ta)}}</button></span>
+                                @else
+                                <span class="h5 font-weight-bold text-danger">Anda belum input judul TA</span>
+                                @endif
                             </div>
                             <div class="col-auto">
                                 <div class="icon icon-shape bg-primary text-white rounded-circle shadow">
