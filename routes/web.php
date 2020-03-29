@@ -53,9 +53,10 @@ Route::prefix('admin')->name('admin.')->middleware(['auth:admin'])->group(functi
     });
 });
 
-Route::prefix('kaprodi')->name('kaprodi')->middleware(['auth:kaprodi'])->group(function () {
+Route::prefix('kaprodi')->name('kaprodi.')->middleware(['auth:kaprodi'])->group(function () {
     Route::get('/home', 'Kaprodi\HomeController@index')->name('home');
     Route::resource('/TA', 'Kaprodi\ListTAController');
+    Route::resource('/pembimbing', 'Kaprodi\PembimbingController');
 });
 
 // Route::group(['middleware' => ['auth:dosen']], function () {

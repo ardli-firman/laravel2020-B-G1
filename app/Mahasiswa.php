@@ -22,6 +22,6 @@ class Mahasiswa extends Authenticatable
 
     public function pembimbing()
     {
-        return $this->belongsTo(Pembimbing::class);
+        return $this->hasMany(Pembimbing::class, 'nim');
     }
 }

@@ -18,6 +18,22 @@ class TugasAkhirBaseService
         $this->request = $request;
     }
 
+    public function getAllTugasAkhir($filter = [])
+    {
+        $judul = JudulTugasAkhir::with('mahasiswa');
+        if (isset($filter['status_ta'])) {
+            $judul = $judul->where('status_ta', $filter['status_ta'])->paginate();
+        } else {
+            $judul = $judul->paginate();
+        }
+        return $judul;
+    }
+
+    public function getTA($id)
+    {
+        return JudulTugasAkhir::with('mahasiswa')->get()->find($id);
+    }
+
     public function getTugasAkhir()
     {
         return $this->auth->user()->judul_tugas_akhir->first();
@@ -40,6 +56,12 @@ class TugasAkhirBaseService
     {
         $this->request->validate(['status_ta' => 'required']);
         $res = JudulTugasAkhir::where('nim', $nim)->update(['status_ta' => $this->request->status_ta]);
+        return $res;
+    }
+
+    public function delete($id)
+    {
+        $res = JudulTugasAkhir::destroy($id);
         return $res;
     }
 

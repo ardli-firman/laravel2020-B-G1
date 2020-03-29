@@ -22,7 +22,7 @@ class CreateJudulTugasAkhirsTable extends Migration
             $table->enum('status_ta', ['menunggu', 'ditolak', 'diterima']);
             $table->timestamps();
 
-            $table->foreign('nim')->references('nim')->on('mahasiswa');
+            $table->foreign('nim')->references('nim')->on('mahasiswa')->onDelete('cascade');
         });
     }
 

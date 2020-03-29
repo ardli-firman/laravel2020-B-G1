@@ -28,7 +28,7 @@ class KaprodiBaseService
     {
         $res = $this->request->validate($this->rules());
         $res['password'] = Hash::make($res['password']);
-        $kaprodi = Kaprodi::insert($res);
+        $kaprodi = Kaprodi::create($res);
         return $kaprodi;
     }
 

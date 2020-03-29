@@ -42,6 +42,8 @@ class MahasiswaBaseService
     {
         if ($params == 'ta') {
             return Mahasiswa::with('judul_tugas_akhir')->get()->find($nim);
+        } else if ($params = 'pem') {
+            return Mahasiswa::with('pembimbing')->get()->find($nim);
         }
 
         return Mahasiswa::find($nim);
@@ -62,7 +64,7 @@ class MahasiswaBaseService
     {
         $res = $this->request->validate($this->rules());
         $res['password'] = Hash::make($res['nim']);
-        $mahasiswa = Mahasiswa::insert($res);
+        $mahasiswa = Mahasiswa::create($res);
         return $mahasiswa;
     }
 
@@ -104,7 +106,7 @@ class MahasiswaBaseService
         foreach ($arrResult as $value) {
             validator($value, $this->rules(), ['nim.unique' => 'NIM ' . $value['nim'] . ' has already been taken.'])->validate();
         }
-        $mahasiswa = Mahasiswa::insert($arrResult);
+        $mahasiswa = Mahasiswa::create($arrResult);
         return $mahasiswa;
     }
 

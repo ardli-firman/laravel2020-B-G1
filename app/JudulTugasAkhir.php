@@ -8,6 +8,7 @@ class JudulTugasAkhir extends Model
 {
     protected $table = 'judul_tugas_akhir';
     protected $guarded = [];
+    public $timestamps = true;
 
     public function mahasiswa()
     {

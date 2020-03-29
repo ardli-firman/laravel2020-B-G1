@@ -15,6 +15,6 @@ class Dosen extends Authenticatable
 
     public function bimbing()
     {
-        return $this->belongsTo(Pembimbing::class);
+        return $this->hasMany(Pembimbing::class);
     }
 }

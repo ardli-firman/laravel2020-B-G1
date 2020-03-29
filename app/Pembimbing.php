@@ -7,14 +7,16 @@ use Illuminate\Database\Eloquent\Model;
 class Pembimbing extends Model
 {
     protected $table = 'pembimbing';
+    protected $guarded = [];
+    protected $primaryKey = null;
 
     public function mahasiswa()
     {
-        return $this->hasMany(Mahasiswa::class, 'nim');
+        return $this->belongsTo(Mahasiswa::class, 'nim');
     }
 
     public function dosen()
     {
-        return $this->hasOne(Dosen::class, 'dosen_id');
+        return $this->belongsTo(Dosen::class, 'dosen_id');
     }
 }

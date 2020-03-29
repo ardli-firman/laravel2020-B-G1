@@ -28,7 +28,7 @@ class DosenBaseService
     {
         $res = $this->request->validate($this->rules());
         $res['password'] = Hash::make($res['password']);
-        $dosen = Dosen::insert($res);
+        $dosen = Dosen::create($res);
         return $dosen;
     }
 

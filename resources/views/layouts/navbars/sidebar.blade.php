@@ -146,11 +146,15 @@
                 @auth("kaprodi")
                 {{-- Ngene nggo navbar kaprodi *ngikuti bae style,e kya sg nduwure --}}
                 <li class="nav-item">
-                    <a class="nav-link" href="{{ route('kaprodiTA.index') }}">
+                    <a class="nav-link" href="{{ route('kaprodi.TA.index') }}">
                         <i class="ni ni-planet text-blue"></i> {{ __('List Tugas akhir') }}
                     </a>
-                </li>      
-
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ route('kaprodi.pembimbing.index') }}">
+                        <i class="ni ni-planet text-blue"></i> {{ __('Pembimbing') }}
+                    </a>
+                </li>
                 @endauth
                 @auth("dosen")
                 {{-- Ngene nggo navbar Dosen --}}

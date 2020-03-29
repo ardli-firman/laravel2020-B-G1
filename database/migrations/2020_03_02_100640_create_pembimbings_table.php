@@ -14,12 +14,13 @@ class CreatePembimbingsTable extends Migration
     public function up()
     {
         Schema::create('pembimbing', function (Blueprint $table) {
-            $table->unsignedInteger('dosen_id')->unique();
-            $table->char('nim', 8)->unique();
+            $table->unsignedInteger('dosen_id');
+            $table->char('nim', 8);
+            $table->string('keterangan', 20);
             $table->timestamps();
 
-            $table->foreign('nim')->references('nim')->on('mahasiswa');
-            $table->foreign('dosen_id')->references('id')->on('dosen');
+            $table->foreign('nim')->references('nim')->on('mahasiswa')->onDelete('cascade');
+            $table->foreign('dosen_id')->references('id')->on('dosen')->onDelete('cascade');
         });
     }
 
