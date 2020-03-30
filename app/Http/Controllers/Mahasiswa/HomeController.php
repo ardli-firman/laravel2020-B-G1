@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Mahasiswa;
 
+use App\JudulTugasAkhir;
 use App\Http\Controllers\Controller;
 use App\Http\Services\TugasAkhir\TugasAkhirBaseService;
 use Illuminate\Http\Request;
@@ -18,8 +19,9 @@ class HomeController extends Controller
 
     public function index()
     {
+        $judulta= JudulTugasAkhir::count();
         $ta = $this->tugasAkhirService->getTugasAkhir();
-        return view('mahasiswa.dashboard', compact('ta'));
+        return view('mahasiswa.dashboard', compact('ta','judulta'));
     }
 
     /**

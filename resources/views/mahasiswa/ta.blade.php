@@ -3,7 +3,7 @@
 @section('content')
     @include('layouts.headers.cards')
 
-    <div class="container-fluid mt--7">
+    <div class="container-fluid mt--9">
         @if ($errors->any())
             @foreach ($errors->all() as $error)
             <div class="alert alert-warning alert-dismissible fade show" role="alert">
@@ -29,36 +29,66 @@
             @if ($ta->status_ta == 'diterima')
                 @forelse ($pembimbings as $keys => $pembimbing)
                     @if ($pembimbing != null)
-                        <div class="col-md-6">
+                        <div class="col">
                                 <div class="card shadow">
                                     <div class="row justify-content-center">
                                         <div class="col-lg-3 order-lg-2">
-                                            <div class="card-profile-image">
+                                            <!-- <div class="card-profile-image">
                                                 <a href="#">
                                                     <img src="https://argon-dashboard-laravel.creative-tim.com/argon/img/theme/team-4-800x800.jpg" class="rounded-circle">
                                                 </a>
-                                            </div>
+                                            </div> -->
                                         </div>
                                     </div>
-                                    <div class="card-header py-6">
+                                    <!-- <div class="card-header py-6">
 
-                                    </div>
+                                    </div> -->
                                     <div class="card-body pt-0 pt-md-4">
+                                    
+                                    <!-- <div class="row">
+                                    <div class="col">
+      <div class="icon icon-shape bg-primary text-dark rounded-circle shadow">
+          <i class="ni ni-paper-diploma"></i>
+      </div>
+    </div>
+    <div class="col-auto">
+        <h5 class="card-title text-uppercase text-muted mb-0 text-black">Total Judul TA</h5>
+        <span class="h2 font-weight-bold mb-0 text-black">ss</span>
+    </div>
+
+</div> -->
+   
                                         <div class="row">
-                                            <div class="col">
+                                        <div class="col col-lg-1">
+      <div class="icon icon-shape bg-primary text-dark rounded-circle shadow">
+          <i class="ni ni-satisfied"></i>
+      </div>
+    </div>
+                                      <div class="col-auto">
                                                 <h1>{{$keys}}</h1>
+                                                <span>{{$pembimbing->dosen->nama}}</span>
                                             </div>
-                                            <div class="col">
+                                            <div class="col-auto ml-9">
+    </div>                              
+
+                                            <div class="col col-lg-1">
+      <div class="icon icon-shape bg-primary text-dark rounded-circle shadow">
+          <i class="ni ni-email-83"></i>
+      </div>
+    </div>   
+    
+                                            <div class="col-auto">
                                                 <h1>Email</h1>
+                                                <span>{{$pembimbing->dosen->email}}</span>
                                             </div>
                                         </div>
-                                        <div class="row">
+                                        <!-- <div class="row">
                                             <div class="col">
                                                 <span>{{$pembimbing->dosen->nama}}</span>
                                             </div>
                                             <div class="col">
                                                 <span>{{$pembimbing->dosen->email}}</span>
-                                            </div>
+                                            </div> -->
                                         </div>
                                     </div>
                                 </div>
@@ -72,7 +102,7 @@
 
         </div>
 
-        <div class="row mt-3">
+        <div class="row mt-3 ml-4 mr-4">
 
         {{-- Detail TA --}}
             <div class="col">
