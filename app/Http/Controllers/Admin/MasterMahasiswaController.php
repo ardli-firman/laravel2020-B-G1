@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Services\Mahasiswa\MahasiswaBaseService;
 use App\Mahasiswa;
 use Illuminate\Http\Request;
+use Yajra\DataTables\DataTables;
 
 class MasterMahasiswaController extends Controller
 {
@@ -18,11 +19,28 @@ class MasterMahasiswaController extends Controller
 
     public function index(Request $request)
     {
-        $mahasiswa = $this->mhsService->getPaginate();
-        if ($request->query('search')) {
-            $mahasiswa = $this->mhsService->search($request->search);
+        if ($request->ajax()) {
+            $mahasiswa = $this->mhsService->getDataTable();
+            return DataTables::of($mahasiswa)
+                ->addIndexColumn()
+                ->editColumn('nama', function ($data) {
+                    return $data->nama;
+                })
+                ->editColumn('nim', function ($data) {
+                    return $data->nim;
+                })
+                ->editColumn('kelas', function ($data) {
+                    return $data->kelas;
+                })
+                ->addColumn('aksi', function ($data) {
+                    $btn = "<a href='" . route('admin.master.mahasiswa.show', $data->nim) . "' class='btn btn-sm btn-primary'>Detail</a>";
+                    return $btn;
+                })
+                ->rawColumns(['aksi'])
+                ->make(true);
         }
-        return view('admin.master.mahasiswa.index', compact('mahasiswa'));
+
+        return view('admin.master.mahasiswa.index');
     }
 
     public function create()

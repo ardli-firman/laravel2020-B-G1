@@ -25,6 +25,11 @@ class MahasiswaBaseService
         return Mahasiswa::all();
     }
 
+    public function getDataTable()
+    {
+        return Mahasiswa::latest()->get();
+    }
+
     public function getMahasiswasTA(Mahasiswa $mhs = null)
     {
         if ($mhs == null) {
