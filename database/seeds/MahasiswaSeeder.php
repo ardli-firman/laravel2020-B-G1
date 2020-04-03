@@ -11,17 +11,27 @@ class MahasiswaSeeder extends Seeder
      *
      * @return void
      */
-    public function run()
+    public function run(Faker\Generator $faker)
     {
-        DB::table('mahasiswa')->insert([
-            'nim' => '17090081',
-            'nama' => 'Ardli FM',
-            'semester' => '6',
-            'kelas' => 'B',
-            'tahun' => '2017',
-            'password' => Hash::make('f'),
-            'created_at' => now(),
-            'updated_at' => now()
-        ]);
+        $kelas = ['A', 'B', 'C', 'D'];
+        for ($i = 0; $i < 100; $i++) {
+            if ($i < 10) {
+                $nim = '1709000' . $i;
+            } else if ($i < 100) {
+                $nim = '170900' . $i;
+            } else {
+                $nim = '17090' . $i;
+            }
+            DB::table('mahasiswa')->insert([
+                'nim' => $nim,
+                'nama' => $faker->name,
+                'semester' => '6',
+                'kelas' =>  $faker->randomElement($kelas),
+                'tahun' => '2017',
+                'password' => Hash::make('f'),
+                'created_at' => now(),
+                'updated_at' => now()
+            ]);
+        }
     }
 }

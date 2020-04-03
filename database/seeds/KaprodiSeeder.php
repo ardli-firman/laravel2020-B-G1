@@ -11,14 +11,16 @@ class KaprodiSeeder extends Seeder
      *
      * @return void
      */
-    public function run()
+    public function run(Faker\Generator $faker)
     {
-        DB::table('kaprodi')->insert([
-            'nama' => 'Kaprodi 1',
-            'email' => 'kaprodi@gmail.com',
-            'password' => Hash::make('kaprodi'),
-            'created_at' => now(),
-            'updated_at' => now()
-        ]);
+        for ($i = 0; $i < 100; $i++) {
+            DB::table('kaprodi')->insert([
+                'nama' => $faker->name,
+                'email' => 'kaprodi' . $i . '@gmail.com',
+                'password' => Hash::make('kaprodi'),
+                'created_at' => now(),
+                'updated_at' => now()
+            ]);
+        }
     }
 }

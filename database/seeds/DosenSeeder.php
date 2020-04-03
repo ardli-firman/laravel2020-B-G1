@@ -11,14 +11,16 @@ class DosenSeeder extends Seeder
      *
      * @return void
      */
-    public function run()
+    public function run(Faker\Generator $faker)
     {
-        DB::table('dosen')->insert([
-            'nama' => 'Dosen 1',
-            'email' => 'dosen@gmail.com',
-            'password' => Hash::make('dosen'),
-            'created_at' => now(),
-            'updated_at' => now()
-        ]);
+        for ($i = 0; $i < 100; $i++) {
+            DB::table('dosen')->insert([
+                'nama' => $faker->name,
+                'email' => 'dosen' . $i . '@gmail.com',
+                'password' => Hash::make('dosen'),
+                'created_at' => now(),
+                'updated_at' => now()
+            ]);
+        }
     }
 }
