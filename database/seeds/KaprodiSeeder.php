@@ -13,7 +13,7 @@ class KaprodiSeeder extends Seeder
      */
     public function run(Faker\Generator $faker)
     {
-        for ($i = 0; $i < 100; $i++) {
+        for ($i = 0; $i <= 99; $i++) {
             DB::table('kaprodi')->insert([
                 'nama' => $faker->name,
                 'email' => 'kaprodi' . $i . '@gmail.com',

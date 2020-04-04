@@ -13,7 +13,7 @@ class DosenSeeder extends Seeder
      */
     public function run(Faker\Generator $faker)
     {
-        for ($i = 0; $i < 100; $i++) {
+        for ($i = 0; $i <= 99; $i++) {
             DB::table('dosen')->insert([
                 'nama' => $faker->name,
                 'email' => 'dosen' . $i . '@gmail.com',
