@@ -33,6 +33,7 @@ class MahasiswaBaseService
     public function getMahasiswasTA(Mahasiswa $mhs = null)
     {
         if ($mhs == null) {
+            $mahasiswasTA = [];
             $mahasiswas = Mahasiswa::with('judul_tugas_akhir')->paginate();
             foreach ($mahasiswas as $mahasiswa) {
                 if ($mahasiswa->judul_tugas_akhir()->exists()) {
