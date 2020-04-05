@@ -36,48 +36,20 @@
 
                         <div class="col-12"></div>
 
-                        <div class="table-responsive">
-                            <table class="table align-items-center table-flush">
+                        <div class="table-responsive p-3">
+                            <table class="table align-items-center table-flush data-table">
                                 <thead class="thead-light">
                                     <tr>
+                                        <th scope="col">No</th>
                                         <th scope="col">NIM</th>
                                         <th scope="col">Nama</th>
                                         <th scope="col">Judul</th>
                                         <th scope="col">Pembimbing</th>
-                                        <th scope="col"></th>
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    @forelse ($list_ta as $ta)
-                                    <tr>
-                                        <td>{{$ta->mahasiswa->nim}}</td>
-                                        <td>{{$ta->mahasiswa->nama}}</td>
-                                        <td>{{$ta->judul}}</td>
-                                        <td class="text-center">
-                                            <button class="btn btn-sm btn-primary">{{$ta->mahasiswa->pembimbing->count()}} / 2</button>
-                                            @if ($ta->mahasiswa->pembimbing->count() < 2)
-                                            <a class="btn btn-sm btn-icon btn-2 btn-danger" type="button" href="{{route('kaprodi.pembimbing.edit',$ta->nim)}}">
-                                                <span class="btn-inner--icon text-white"><i class="ni ni-settings-gear-65 text-white"></i>Pilih pembimbing</span>
-                                            </a>
-                                            @else
-                                            <a class="btn btn-sm btn-icon btn-2 btn-success" type="button" href="{{route('kaprodi.pembimbing.show',$ta->nim)}}">
-                                                    <span class="btn-inner--icon text-white"><i class="ni ni-settings-gear-65 text-white"></i>Detail pembimbing</span>
-                                                </a>
-                                            @endif
-                                        </td>
-                                    </tr>
-                                    @empty
-                                        <td>Tidak ada data</td>
-                                    @endforelse
                                 </tbody>
                             </table>
-                        </div>
-                        <div class="card-footer py-4">
-                                {{$list_ta->render()}}
-                            <nav
-                                class="d-flex justify-content-end"
-                                aria-label="..."
-                            ></nav>
                         </div>
                     </div>
                 </div>
@@ -85,3 +57,21 @@
         </div>
         {{-- @include('admin.managemen_user.mahasiswa.modal.aksi') --}}
 @endsection
+@push('js')
+<script>
+    $(function(){
+            const table = $('.data-table').DataTable({
+                processing: true,
+                serverSide: true,
+                ajax: "{{ route('kaprodi.pembimbing.index') }}",
+                columns: [
+                    {data: 'DT_RowIndex', name: 'DT_RowIndex', orderable: false, searchable: false},
+                    {data: 'nim', name: 'nim'},
+                    {data: 'nama', name: 'nama'},
+                    {data: 'judul', name: 'judul'},
+                    {data: 'pembimbing', name: 'pembimbing',orderable: false, searchable: false}
+                ]
+            })
+        })
+</script>
+@endpush
