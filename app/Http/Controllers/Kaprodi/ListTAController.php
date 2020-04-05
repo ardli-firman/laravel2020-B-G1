@@ -7,6 +7,7 @@ use App\Http\Services\Mahasiswa\MahasiswaBaseService;
 use App\Http\Services\TugasAkhir\TugasAkhirBaseService;
 use App\JudulTugasAkhir;
 use Illuminate\Http\Request;
+use Yajra\DataTables\DataTables;
 
 class ListTAController extends Controller
 {
@@ -20,10 +21,33 @@ class ListTAController extends Controller
         $this->mhsService = $mhsService;
     }
 
-    public function index()
+    public function index(Request $request)
     {
-        $list_ta = $this->tugasAkhirService->getAllTugasAkhir();
-        return view('kaprodi.list_ta', compact('list_ta'));
+        $list_ta = $this->tugasAkhirService->getDataTable();
+        if ($request->ajax()) {
+            return DataTables::of($list_ta)
+                ->addIndexColumn()
+                ->editColumn('nama', function ($data) {
+                    return $data->mahasiswa->nama;
+                })
+                ->editColumn('status_ta', function ($data) {
+                    $btn = "<button class='btn btn-sm btn-secondary'>{$data->status_ta}</button></td>";
+                    return $btn;
+                })
+                ->addColumn('aksi', function ($data) {
+                    $btn = "<a class='btn btn-sm btn-icon btn-2 btn-primary' type='button' href='" . route('kaprodi.TA.show', $data->id) . "'>
+                                <span class='btn-inner--icon text-white'><i class='ni ni-settings-gear-65 text-white'></i>Detail</span>
+                            </a><br>";
+                    if ($data->status_ta != 'diterima') {
+                        $btn .= view('kaprodi.form.delete', compact('data'));
+                    }
+                    return $btn;
+                })
+                ->rawColumns(['aksi', 'status_ta'])
+                ->make(true);
+        }
+
+        return view('kaprodi.list_ta');
     }
 
     public function create()

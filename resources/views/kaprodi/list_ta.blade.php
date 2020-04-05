@@ -36,19 +36,20 @@
 
                         <div class="col-12"></div>
 
-                        <div class="table-responsive">
-                            <table class="table align-items-center table-flush">
+                        <div class="table-responsive p-3">
+                            <table class="table align-items-center table-flush data-table">
                                 <thead class="thead-light">
                                     <tr>
+                                        <th scope="col">No</th>
                                         <th scope="col">NIM</th>
                                         <th scope="col">Nama</th>
                                         <th scope="col">Judul</th>
                                         <th scope="col">Status TA</th>
-                                        <th scope="col"></th>
+                                        <th scope="col">Aksi</th>
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    @forelse ($list_ta as $ta)
+                                    {{-- @forelse ($list_ta as $ta)
                                     <tr>
                                         <td>{{$ta->mahasiswa->nim}}</td>
                                         <td>{{$ta->mahasiswa->nama}}</td>
@@ -70,20 +71,39 @@
                                     </tr>
                                     @empty
                                         <td>Tidak ada data</td>
-                                    @endforelse
+                                    @endforelse --}}
                                 </tbody>
                             </table>
                         </div>
-                        <div class="card-footer py-4">
+                        {{-- <div class="card-footer py-4">
                                 {{$list_ta->render()}}
                             <nav
                                 class="d-flex justify-content-end"
                                 aria-label="..."
                             ></nav>
-                        </div>
+                        </div> --}}
                     </div>
                 </div>
             </div>
         </div>
         {{-- @include('admin.managemen_user.mahasiswa.modal.aksi') --}}
 @endsection
+@push('js')
+<script>
+    $(function(){
+            const table = $('.data-table').DataTable({
+                processing: true,
+                serverSide: true,
+                ajax: "{{ route('kaprodi.TA.index') }}",
+                columns: [
+                    {data: 'DT_RowIndex', name: 'DT_RowIndex', orderable: false, searchable: false},
+                    {data: 'nim', name: 'nim'},
+                    {data: 'nama', name: 'nama'},
+                    {data: 'judul', name: 'judul'},
+                    {data: 'status_ta', name: 'status_ta'},
+                    {data: 'aksi', name: 'aksi', orderable: false, searchable: false},
+                ]
+            })
+        })
+</script>
+@endpush
