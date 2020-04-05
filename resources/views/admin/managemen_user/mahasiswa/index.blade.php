@@ -1,5 +1,19 @@
 @extends('layouts.app',['navTitle' => 'Managemen user / Mahasiswa'])
 
+{{-- @section('form-search')
+{!! Form::open(['class'=>'navbar-search navbar-search-dark form-inline mr-3 d-none d-md-flex ml-lg-auto']) !!}
+        <div class="form-group mb-0">
+            <div class="input-group input-group-alternative">
+                <div class="input-group-prepend">
+                    <span class="input-group-text"><i class="fas fa-search"></i></span>
+                </div>
+                <input class="form-control" placeholder="Search" type="text">
+                <button>Search</button>
+            </div>
+        </div>
+{!! Form::close() !!}
+@endsection --}}
+
 @section('content')
     @include('layouts.headers.cards')
     <div class="container-fluid mt--8">
@@ -29,64 +43,50 @@
                                 <div class="col-sm">
                                     <h3 class="">Mahasiswa</h3>
                                 </div>
-                                <div class="col-sm d-flex justify-content-end">
-                                    <form action="">
-                                        <div class="form-group">
-                                            <div class="input-group">
-                                                {!! Form::text('search', '', ['class'=>'form-control-sm form-control-alternative']) !!}
-                                                <div class="input-group-apend">
-                                                    <button type="submit" class="btn btn-sm btn-primary">Cari</button>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </form>
-                                </div>
+                            </div>
+                            <div class="row">
                             </div>
                         </div>
 
                         <div class="col-12"></div>
 
-                        <div class="table-responsive">
-                            <table class="table align-items-center table-flush">
+                        <div class="table-responsive p-3">
+                            <table class="table data-table">
                                 <thead class="thead-light">
                                     <tr>
+                                        <th scope="col">No</th>
                                         <th scope="col">Nama</th>
                                         <th scope="col">NIM</th>
-                                        <th scope="col"></th>
+                                        <th scope="col">Aksi</th>
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    @forelse ($mahasiswa as $mhs)
-                                    <tr>
-                                        <td>{{$mhs->nama}}</td>
-                                        <td>{{$mhs->nim}}</td>
-                                        <td class="text-center">
-                                            <a class="btn btn-sm btn-icon btn-2 btn-warning" type="button" href="{{route('admin.managemen.mahasiswa.edit',$mhs->nim)}}">
-                                                <span class="btn-inner--icon text-white"><i class="ni ni-settings-gear-65 text-white"></i>Ubah</span>
-                                            </a>
-                                            {!! Form::open(['route'=>['admin.managemen.mahasiswa.destroy',$mhs->nim],'method'=>'delete']) !!}
-                                            <button class="btn btn-sm btn-icon btn-2 btn-danger" type="submit" onclick="return confirm('Yakin?')">
-                                                <span class="btn-inner--icon text-white"><i class="ni ni-fat-remove text-white"></i>hapus</span>
-                                            </button>
-                                            {!! Form::close() !!}
-                                        </td>
-                                    </tr>
-                                    @empty
-                                        <td>Tidak ada data</td>
-                                    @endforelse
                                 </tbody>
                             </table>
-                        </div>
-                        <div class="card-footer py-4">
-                                {{$mahasiswa->render()}}
-                            <nav
-                                class="d-flex justify-content-end"
-                                aria-label="..."
-                            ></nav>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-        {{-- @include('admin.managemen_user.mahasiswa.modal.aksi') --}}
+
+    {{-- @include('layouts.footers.auth') --}}
+
+    @push('js')
+    <script>
+
+        $(function(){
+            const table = $('.data-table').DataTable({
+                processing: true,
+                serverSide: true,
+                ajax: "{{ route('admin.managemen.mahasiswa.index') }}",
+                columns: [
+                    {data: 'DT_RowIndex', name: 'DT_RowIndex', orderable: false, searchable: false},
+                    {data: 'nama', name: 'nama'},
+                    {data: 'nim', name: 'nim'},
+                    {data: 'aksi', name: 'aksi', orderable: false, searchable: false},
+                ]
+            })
+        })
+    </script>
+    @endpush
 @endsection

@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Services\Mahasiswa\MahasiswaBaseService;
 use App\Mahasiswa;
 use Illuminate\Http\Request;
+use Yajra\DataTables\DataTables;
 
 class ManagemenMahasiswaController extends Controller
 {
@@ -19,11 +20,24 @@ class ManagemenMahasiswaController extends Controller
 
     public function index(Request $request)
     {
-        $mahasiswa = $this->mhsService->getPaginate();
-        if ($request->query('search')) {
-            $mahasiswa = $this->mhsService->search($request->search);
+        if ($request->ajax()) {
+            $mahasiswa = $this->mhsService->getDataTable();
+            return DataTables::of($mahasiswa)
+                ->addIndexColumn()
+                ->editColumn('nama', function ($data) {
+                    return $data->nama;
+                })
+                ->editColumn('nim', function ($data) {
+                    return $data->nim;
+                })
+                ->addColumn('aksi', function ($data) {
+                    $btn = view('admin.managemen_user.mahasiswa.view.viewform', compact('data'));
+                    return $btn;
+                })
+                ->rawColumns(['aksi'])
+                ->make(true);
         }
-        return view('admin.managemen_user.mahasiswa.index', compact('mahasiswa'));
+        return view('admin.managemen_user.mahasiswa.index');
     }
 
     public function create()
