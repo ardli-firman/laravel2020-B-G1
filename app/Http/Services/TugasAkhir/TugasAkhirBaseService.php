@@ -18,9 +18,13 @@ class TugasAkhirBaseService
         $this->request = $request;
     }
 
-    public function getDataTable()
+    public function getDataTable($filter = [])
     {
-        return JudulTugasAkhir::with('mahasiswa')->latest()->get();
+        $judul = JudulTugasAkhir::with('mahasiswa');
+        if (isset($filter['status_ta'])) {
+            $judul = $judul->where('status_ta', $filter['status_ta']);
+        }
+        return $judul->latest()->get();
     }
 
     public function getAllTugasAkhir($filter = [])

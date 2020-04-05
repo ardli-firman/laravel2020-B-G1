@@ -8,6 +8,7 @@ use App\Http\Services\Dosen\PembimbingService;
 use App\Http\Services\Mahasiswa\MahasiswaBaseService;
 use App\Http\Services\TugasAkhir\TugasAkhirBaseService;
 use Illuminate\Http\Request;
+use Yajra\DataTables\DataTables;
 
 class PembimbingController extends Controller
 {
@@ -33,10 +34,42 @@ class PembimbingController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        $list_ta = $this->tugasAkhirService->getAllTugasAkhir(['status_ta' => 'diterima']);
-        return view('kaprodi.pembimbing.index', compact('list_ta'));
+        $list_ta = $this->tugasAkhirService->getDataTable(['status_ta' => 'diterima']);
+        if ($request->ajax()) {
+            return DataTables::of($list_ta)
+                ->addIndexColumn()
+                ->editColumn('nama', function ($data) {
+                    return $data->mahasiswa->nama;
+                })
+                ->editColumn('status_ta', function ($data) {
+                    $btn = "<button class='btn btn-sm btn-secondary'>{$data->status_ta}</button></td>";
+                    return $btn;
+                })
+                ->editColumn('pembimbing', function ($data) {
+                    $totPembimbing = $data->mahasiswa->pembimbing->count();
+                    $btn = "<button class='btn btn-sm btn-primary'>{$totPembimbing} / 2</button>";
+                    $btnDel = view('kaprodi.form.delete_pembimbing', compact('data'));
+                    $btnEdt = "<a class='btn btn-sm btn-icon btn-2 btn-danger' type='button' href='" . route('kaprodi.pembimbing.edit', $data->nim) . "'>
+                                    <span class='btn-inner--icon text-white'><i class='ni ni-settings-gear-65 text-white'></i>Pilih pembimbing</span>
+                                </a>";
+                    if ($totPembimbing == 0) {
+                        $btn .= $btnEdt;
+                    } else if ($totPembimbing < 2) {
+                        $btn .= $btnEdt;
+                        $btn .= $btnDel;
+                    } else {
+                        $btn .= "<a class='btn btn-sm btn-icon btn-2 btn-success' type='button' href='" . route('kaprodi.pembimbing.show', $data->nim) . "'>
+                                <span class='btn-inner--icon text-white'><i class='ni ni-settings-gear-65 text-white'></i>Detail pembimbing</span>
+                            </a>" . $btnDel;
+                    }
+                    return $btn;
+                })
+                ->rawColumns(['pembimbing'])
+                ->make(true);
+        }
+        return view('kaprodi.pembimbing.index');
     }
 
     /**
@@ -110,6 +143,10 @@ class PembimbingController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $res = $this->pembimbingService->deleteByNim($id);
+        if ($res) {
+            return redirect()->back()->withSuccess('Berhasil di hapus');
+        }
+        return redirect()->back()->withErrors('Gagal dihapus');
     }
 }
