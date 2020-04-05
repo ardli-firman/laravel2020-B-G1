@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Services\Kaprodi\KaprodiBaseService;
 use App\Kaprodi;
 use Illuminate\Http\Request;
+use Yajra\DataTables\DataTables;
 
 class ManagemenKaprodiController extends Controller
 {
@@ -16,11 +17,30 @@ class ManagemenKaprodiController extends Controller
         $this->kaprodiService = $kaprodiService;
     }
 
-    public function index()
+    public function index(Request $request)
     {
-        $kaprodi = $this->kaprodiService->getPaginate(5);
-        return view('admin.managemen_user.kaprodi.index', compact('kaprodi'));
+        if ($request->ajax()) {
+            $kaprodi = $this->kaprodiService->getDataTable();
+            return DataTables::of($kaprodi)
+                ->addIndexColumn()
+                ->editColumn('nama', function ($data) {
+                    return $data->nama;
+                })
+                ->editColumn('email', function ($data) {
+                    return $data->email;
+                })
+                ->addColumn('aksi', function ($data) {
+                    $btn = view('admin.managemen_user.kaprodi.view.viewform', compact('data'));
+                    return $btn;
+                    
+                })
+
+                ->rawColumns(['aksi'])
+                ->make(true);
+        }
+        return view('admin.managemen_user.kaprodi.index');
     }
+
     public function create()
     {
     }
