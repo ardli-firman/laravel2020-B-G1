@@ -7,6 +7,7 @@ use App\Http\Services\Mahasiswa\MahasiswaBaseService;
 use App\Http\Services\TugasAkhir\TugasAkhirBaseService;
 use App\Mahasiswa;
 use Illuminate\Http\Request;
+use Yajra\DataTables\DataTables;
 
 class ManagemenJudulController extends Controller
 {
@@ -19,10 +20,33 @@ class ManagemenJudulController extends Controller
         $this->taService = $taService;
     }
 
-    public function index()
+    public function index(Request $request)
     {
-        $mahasiswas = $this->mhsService->getMahasiswasTA();
-        return view('dosen.managemen', compact('mahasiswas'));
+        if ($request->ajax()) {
+            $mahasiswas = $this->mhsService->getMahasiswasTA();
+            return DataTables::of($mahasiswas)
+                ->addIndexColumn()
+                ->editColumn('nim', function ($data) {
+                    return $data->nim;
+                })
+                ->editColumn('nama', function ($data) {
+                    return $data->nama;
+                })
+                ->editColumn('kelas', function ($data) {
+                    return $data->kelas;
+                })
+                ->addColumn('tugas_akhir', function ($data) {
+                    $btn = "<a href='" . route('dosen.managemen.show', $data->nim) . "' class='btn btn-sm btn-primary'>Lihat & Edit Status</a>";
+                    return $btn;
+                })
+                ->addColumn('status_ta', function ($data) {
+                    $btn = "<button class='btn btn-sm btn-secondary'>{$data->judul_tugas_akhir->status_ta}</button>";
+                    return $btn;
+                })
+                ->rawColumns(['tugas_akhir', 'status_ta'])
+                ->make(true);
+        }
+        return view('dosen.managemen');
     }
 
     /**

@@ -6,6 +6,7 @@ use App\Dosen;
 use App\Http\Controllers\Controller;
 use App\Http\Services\Dosen\DosenBaseService;
 use Illuminate\Http\Request;
+use Yajra\DataTables\DataTables;
 
 class ManagemenDosenController extends Controller
 {
@@ -16,11 +17,28 @@ class ManagemenDosenController extends Controller
         $this->dosenService = $dosenService;
     }
 
-    public function index()
+    public function index(Request $request)
     {
-        $dosen = $this->dosenService->getPaginate(5);
-        return view('admin.managemen_user.dosen.index', compact('dosen'));
+        if ($request->ajax()) {
+            $dosen = $this->dosenService->getDataTable();
+            return DataTables::of($dosen)
+                ->addIndexColumn()
+                ->editColumn('nama', function ($data) {
+                    return $data->nama;
+                })
+                ->editColumn('email', function ($data) {
+                    return $data->email;
+                })
+                ->addColumn('aksi', function ($data) {
+                    $btn = view('admin.managemen_user.dosen.view.viewform', compact('data'));
+                    return $btn;
+                })
+                ->rawColumns(['aksi'])
+                ->make(true);
+        }
+        return view('admin.managemen_user.dosen.index');
     }
+
     public function create()
     {
     }

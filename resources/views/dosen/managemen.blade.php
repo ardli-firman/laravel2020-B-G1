@@ -52,6 +52,7 @@
                             <table class="table data-table">
                                 <thead class="thead-light">
                                     <tr>
+                                        <th scope="col">No</th>
                                         <th scope="col">NIM</th>
                                         <th scope="col">Nama</th>
                                         <th scope="col">Kelas</th>
@@ -78,7 +79,7 @@
     <script>
         $(function(){
             const table = $('.data-table').DataTable({
-                processing: true;
+                processing: true,
                 serverSide: true,
                 ajax: "{{ route('dosen.managemen.index') }}",
                 columns: [
@@ -86,8 +87,8 @@
                     {data: 'nim', name: 'nim'},
                     {data: 'nama', name: 'nama'},
                     {data: 'kelas', name: 'kelas'},
-                    {data: 'tugas akhir', name: 'tugas akhir', orderable: false, searchable: false},
-                    
+                    {data: 'tugas_akhir', name: 'tugas_akhir', orderable: false, searchable: false},
+                    {data: 'status_ta', name: 'status_ta'},
                 ]
             })
         })

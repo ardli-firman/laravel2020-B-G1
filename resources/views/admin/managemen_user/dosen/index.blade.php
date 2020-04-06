@@ -36,43 +36,19 @@
 
                         <div class="col-12"></div>
 
-                        <div class="table-responsive">
+                        <div class="table-responsive p-3">
                             <table class="table align-items-center table-flush data-table">
                                 <thead class="thead-light">
                                     <tr>
+                                        <th scope="col">No</th>
                                         <th scope="col">Nama</th>
                                         <th scope="col">Email</th>
                                         <th scope="col"></th>
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    @forelse ($dosen as $dos)
-                                    <tr>
-                                        <td>{{$dos->nama}}</td>
-                                        <td>{{$dos->email}}</td>
-                                        <td class="text-center">
-                                            <a class="btn btn-sm btn-icon btn-2 btn-warning" type="button" href="{{route('admin.managemen.dosen.edit',$dos->id)}}">
-                                                <span class="btn-inner--icon text-white"><i class="ni ni-settings-gear-65 text-white"></i>Ubah</span>
-                                            </a>
-                                            {!! Form::open(['route'=>['admin.managemen.dosen.destroy',$dos->id],'method'=>'delete']) !!}
-                                            <button class="btn btn-sm btn-icon btn-2 btn-danger" type="submit" onclick="return confirm('Yakin?')">
-                                                <span class="btn-inner--icon text-white"><i class="ni ni-fat-remove text-white"></i>hapus</span>
-                                            </button>
-                                            {!! Form::close() !!}
-                                        </td>
-                                    </tr>
-                                    @empty
-                                        <td>Tidak ada data</td>
-                                    @endforelse
                                 </tbody>
                             </table>
-                        </div>
-                        <div class="card-footer py-4">
-                                {{$dosen->render()}}
-                            <nav
-                                class="d-flex justify-content-end"
-                                aria-label="..."
-                            ></nav>
                         </div>
                     </div>
                 </div>
@@ -86,7 +62,7 @@
                     processing: true,
                     serverSide: true,
                     ajax: "{{ route('admin.managemen.dosen.index') }}",
-                    
+
                     columns: [
                         {data: 'DT_RowIndex', name: 'DT_RowIndex', orderable: false, searchable: false},
                         {data: 'nama', name: 'nama'},

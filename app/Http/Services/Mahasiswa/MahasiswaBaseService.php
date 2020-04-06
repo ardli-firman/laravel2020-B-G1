@@ -34,7 +34,7 @@ class MahasiswaBaseService
     {
         if ($mhs == null) {
             $mahasiswasTA = [];
-            $mahasiswas = Mahasiswa::with('judul_tugas_akhir')->paginate();
+            $mahasiswas = Mahasiswa::with('judul_tugas_akhir')->latest()->get();
             foreach ($mahasiswas as $mahasiswa) {
                 if ($mahasiswa->judul_tugas_akhir()->exists()) {
                     $mahasiswasTA[] = $mahasiswa;

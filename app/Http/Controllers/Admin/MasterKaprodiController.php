@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Services\Kaprodi\KaprodiBaseService;
 use App\Http\Services\Mahasiswa\MahasiswaBaseService;
 use Illuminate\Http\Request;
+use Yajra\DataTables\DataTables;
 
 class MasterKaprodiController extends Controller
 {
@@ -16,10 +17,26 @@ class MasterKaprodiController extends Controller
         $this->kaprodiService = $kaprodiService;
     }
 
-    public function index()
+    public function index(Request $request)
     {
-        $kaprodi = $this->kaprodiService->getPaginate();
-        return view('admin.master.kaprodi.index', compact('kaprodi'));
+        if ($request->ajax()) {
+            $kaprodi = $this->kaprodiService->getDataTable();
+            return DataTables::of($kaprodi)
+                ->addIndexColumn()
+                ->editColumn('nama', function ($data) {
+                    return $data->nama;
+                })
+                ->editColumn('email', function ($data) {
+                    return $data->email;
+                })
+                ->addColumn('aksi', function ($data) {
+                    $btn = "<a href='" . route('admin.master.kaprodi.show', $data->id) . "' class='btn btn-sm btn-primary'>Detail</a>";
+                    return $btn;
+                })
+                ->rawColumns(['aksi'])
+                ->make(true);
+        }
+        return view('admin.master.kaprodi.index');
     }
 
     public function create()

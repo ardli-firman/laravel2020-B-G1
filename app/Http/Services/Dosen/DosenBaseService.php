@@ -19,6 +19,11 @@ class DosenBaseService
         return Dosen::find($id);
     }
 
+    public function getDataTable()
+    {
+        return Dosen::latest()->get();
+    }
+
     public function getPaginate($total = 5)
     {
         return Dosen::paginate($total);
