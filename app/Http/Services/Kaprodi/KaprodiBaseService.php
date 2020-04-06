@@ -19,6 +19,11 @@ class KaprodiBaseService
         return Kaprodi::find($id);
     }
 
+    public function getDataTable()
+    {
+        return Kaprodi::latest()->get();
+    }
+
     public function getPaginate($total = 5)
     {
         return Kaprodi::paginate($total);

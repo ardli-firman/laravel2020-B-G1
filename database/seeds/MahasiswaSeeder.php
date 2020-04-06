@@ -14,13 +14,11 @@ class MahasiswaSeeder extends Seeder
     public function run(Faker\Generator $faker)
     {
         $kelas = ['A', 'B', 'C', 'D'];
-        for ($i = 0; $i < 100; $i++) {
+        for ($i = 0; $i <= 99; $i++) {
             if ($i < 10) {
                 $nim = '1709000' . $i;
-            } else if ($i < 100) {
-                $nim = '170900' . $i;
             } else {
-                $nim = '17090' . $i;
+                $nim = '170900' . $i;
             }
             DB::table('mahasiswa')->insert([
                 'nim' => $nim,
