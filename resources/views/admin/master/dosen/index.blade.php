@@ -93,9 +93,23 @@
         </div>
 
     @include('admin.master.dosen.modal.tambah')
-    {{-- <script>
+    @push('js')
+     <script>
         document.getElementById("btn-tambah-mhs").addEventListener("click", function(){
             document.getElementById("form-tambah-mhs").reset();
         });
-    </script> --}}
+        $(function(){
+            const table = $('.data-table').DataTable({
+                processing: true,
+                serverSide: true,
+                ajax: "{{ route('admin.master.dosen.index') }}",
+                columns: [
+                    {data:'DT_RowIndex', name: 'DT_RowIndex', orderable: false, searchable: false},
+                    {data: 'nama', name: 'nama'},
+                    {data: 'email.' name: 'email'},
+                    {data: 'aksi', name: 'aksi', orderable: false, searchable: false},
+                ]
+            })
+        }) 
+    </script> 
 @endsection
