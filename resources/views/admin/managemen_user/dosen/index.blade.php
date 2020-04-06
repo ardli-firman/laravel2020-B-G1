@@ -37,7 +37,7 @@
                         <div class="col-12"></div>
 
                         <div class="table-responsive">
-                            <table class="table align-items-center table-flush">
+                            <table class="table align-items-center table-flush data-table">
                                 <thead class="thead-light">
                                     <tr>
                                         <th scope="col">Nama</th>
@@ -79,4 +79,22 @@
             </div>
         </div>
         {{-- @include('admin.managemen_user.mahasiswa.modal.aksi') --}}
+        @push('js')
+        <script>
+            $(function(){
+                const table = $('.data-table').DataTable({
+                    processing: true,
+                    serverSide: true,
+                    ajax: "{{ route('admin.managemen.dosen.index') }}",
+                    
+                    columns: [
+                        {data: 'DT_RowIndex', name: 'DT_RowIndex', orderable: false, searchable: false},
+                        {data: 'nama', name: 'nama'},
+                        {data: 'email', name: 'email'},
+                        {data: 'aksi', name: 'aksi', orderable: false, searchable: false},
+                    ]
+                });
+            });
+        </script>
+        @endpush
 @endsection

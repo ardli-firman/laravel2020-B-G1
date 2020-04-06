@@ -43,25 +43,13 @@
                                 <div class="col-sm">
                                     <h3 class="">Mahasiswa</h3>
                                 </div>
-                                <div class="col-sm d-flex justify-content-end">
-                                    <form action="">
-                                        <div class="form-group">
-                                            <div class="input-group">
-                                                {!! Form::text('search', '', ['class'=>'form-control-sm form-control-alternative']) !!}
-                                                <div class="input-group-prepend">
-                                                    <button type="submit" class="btn btn-sm btn-primary">Cari</button>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </form>
-                                </div>
                             </div>
                         </div>
 
                         <div class="col-12"></div>
 
-                        <div class="table-responsive">
-                            <table class="table align-items-center table-flush">
+                        <div class="table-responsive p-3">
+                            <table class="table data-table">
                                 <thead class="thead-light">
                                     <tr>
                                         <th scope="col">NIM</th>
@@ -72,21 +60,6 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    @forelse ($mahasiswas as $mahasiswa)
-                                    <tr>
-                                        <td>{{$mahasiswa->nim}}</td>
-                                        <td>{{$mahasiswa->nama}}</td>
-                                        <td>{{$mahasiswa->kelas}}</td>
-                                        <td>
-                                            <a href="{{route('dosen.managemen.show',$mahasiswa->nim)}}" class="btn btn-sm btn-primary">Lihat</a>
-                                        </td>
-                                        <td>
-                                            <button class="btn btn-sm btn-secondary">{{$mahasiswa->judul_tugas_akhir->status_ta}}</button>
-                                        </td>
-                                    </tr>
-                                    @empty
-                                    <td>Tidak ada data</td>
-                                    @endforelse
                                 </tbody>
                             </table>
                         </div>
@@ -100,4 +73,24 @@
                 </div>
             </div>
         </div>
+
+    @push('js')
+    <script>
+        $(function(){
+            const table = $('.data-table').DataTable({
+                processing: true;
+                serverSide: true,
+                ajax: "{{ route('dosen.managemen.index') }}",
+                columns: [
+                    {data: 'DT_RowIndex', name: 'DT_RowIndex', orderable: false, searchable: false},
+                    {data: 'nim', name: 'nim'},
+                    {data: 'nama', name: 'nama'},
+                    {data: 'kelas', name: 'kelas'},
+                    {data: 'tugas akhir', name: 'tugas akhir', orderable: false, searchable: false},
+                    
+                ]
+            })
+        })
+    </script>
+    @endpush
 @endsection

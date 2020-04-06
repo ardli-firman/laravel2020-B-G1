@@ -80,7 +80,7 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    @forelse ($tas as $jdl)
+                                    {{-- @forelse ($tas as $jdl)
                                     <tr>
                                         <td>{{$jdl->nim}}</td>
                                         <td>{{$jdl->judul}}</td>
@@ -106,14 +106,13 @@
 
 									      				<button type="submit" class="btn btn-danger">Delete</button>
 									                </form>
-                                                    <!-- <a class="dropdown-item" href="{{route('dosen.managemen.destroy',$jdl->nim)}}">Delete</a> -->
                                                 </div>
                                             </div>
                                         </td>
                                     </tr>
                                     @empty
                                         <td>Tidak ada data</td>
-                                    @endforelse
+                                    @endforelse --}}
                                 </tbody>
                             </table>
                         </div>
