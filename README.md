@@ -36,10 +36,12 @@
 
 ### Cara install
 
--   Terminal
--   git clone <url-repo kie>
--   composer install
--   copy .env.example , rename gdi .env
--   isi nama database
--   php artisan key:generate
--   php artisan migrate --seed
+-   Buka Terminal
+-   Ke folder cd /xampp/htdocs (WINDOWS) atau cd /lampp/htdocs (LINUX) ketik
+    git clone https://github.com/mirza-alim-m/laravel2020-B-G1.git
+-   Masuk ke folder project lewat cmd. (cd sintak) *tanpa kurung
+-   Ubah nama file .env.example menjadi .env
+-   Isi nama database
+-   Kembali ke cmd lalu ketik php artisan key:generate (Pada project laravel sintak)
+-   Lalu ketik kembali php artisan migrate --seed
+-   Untuk menjalankan ketik php artisan serve
