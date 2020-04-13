@@ -19,6 +19,7 @@
 -   Buka Terminal
 -   Ke folder cd /xampp/htdocs (WINDOWS) atau cd /lampp/htdocs (LINUX) ketik
     git clone https://github.com/mirza-alim-m/laravel2020-B-G1.git
+-   Ubah nama folder menjadi sintak    
 -   Masuk ke folder project lewat cmd. (cd sintak) *tanpa kurung
 -   Ubah nama file .env.example menjadi .env
 -   Isi nama database
