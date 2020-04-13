@@ -16,9 +16,22 @@
 
 # CARA INSTALL
 
--   Buka Terminal
--   Ke folder cd /xampp/htdocs (WINDOWS) atau cd /lampp/htdocs (LINUX) ketik
-    git clone https://github.com/mirza-alim-m/laravel2020-B-G1.git
+### Windows
+- Klik Clone or Download silahkan download zip
+- Pindah kedalam folder /xampp/htdocs dan extrak 
+- Buka Comandline atau bisa menggunakan terminal didalam Visual Studio Code, arahkan ke folder projek dengan ketik
+  " cd /xampp/htdocs/sintak "
+- Ketikan " composer install "
+-   Ubah nama file .env.example menjadi .env
+-   Isi nama database
+-   Kembali ke cmd lalu ketik php artisan key:generate (Pada project laravel sintak)
+-   Lalu ketik kembali php artisan migrate --seed
+-   Untuk menjalankan ketik php artisan serve
+
+### LINUX
+-   Ke folder /lampp/htdocs 
+-   Buka Terminal dengan klik kanan open terminal
+-   ketik "git clone https://github.com/mirza-alim-m/laravel2020-B-G1.git" pada terminal
 -   Ubah nama folder menjadi sintak    
 -   Masuk ke folder project lewat cmd. (cd sintak) *tanpa kurung
 -   Ubah nama file .env.example menjadi .env
@@ -26,3 +39,5 @@
 -   Kembali ke cmd lalu ketik php artisan key:generate (Pada project laravel sintak)
 -   Lalu ketik kembali php artisan migrate --seed
 -   Untuk menjalankan ketik php artisan serve
+
+*note apabila terjadi eror setelah perintah " composer install ", silahkan ketikan "composer update"
