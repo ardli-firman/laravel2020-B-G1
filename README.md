@@ -1,6 +1,19 @@
 > NOTE : PREVIOUS commit in gitlab repository >
 > Repo : [SINTAK](https://gitlab.com/a0i/sintak) thanks.
 
+# INTRO
+
+## Tema Project
+
+-   SISTEM INFORMASI TUGAS AKHIR (SINTAK)
+
+## Anggota Kelompok
+
+-   Muhammad Irfan Bakhtiar (17090047)
+-   Ardli Firman Maulana    (17090081)
+-   Naufal Islam            (17090086)
+-   Muhamad Abdul Muiz      (17090150)
+
 # TASK
 
 ## Admin
