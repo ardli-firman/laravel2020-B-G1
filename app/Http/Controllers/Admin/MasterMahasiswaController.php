@@ -58,6 +58,7 @@ class MasterMahasiswaController extends Controller
         if ($res) {
             return redirect()->back()->withSuccess('Berhasil');
         }
+        return redirect()->back()->withErrors('Gagal ditambahkan');
     }
 
     public function show($nim)
