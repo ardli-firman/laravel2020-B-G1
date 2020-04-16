@@ -1,32 +1,43 @@
 > NOTE : PREVIOUS commit in gitlab repository >
 > Repo : [SINTAK](https://gitlab.com/a0i/sintak) thanks.
 
-# TASK
+# INTRO
 
-## Admin
+## Tema Project
 
--   ~~Bisa manage akun mahasiswa,kaprodi,dosen~~ ( Rampung )
--   ~~Bisa manage mahasiswa,kaprodi,dosen~~ ( Rampung )
+-   SISTEM INFORMASI TUGAS AKHIR (SINTAK)
 
-## Kaprodi
+## Anggota Kelompok
 
--   ~~Bisa milihna 2 pembimbing nggo 1 mahasiswa berdasarkan inputan Judul Tugas akhir (Ngenteni mahasiswa ws nginput) (Read, Update)~~ ( Rampung )
--   ~~Bisa ngileng list tugas akhir~~ ( Rampung )
+-   Muhammad Irfan Bakhtiar (17090047)
+-   Ardli Firman Maulana    (17090081)
+-   Naufal Islam            (17090086)
+-   Muhamad Abdul Muiz      (17090150)
 
-## Dosen
+# CARA INSTALL
 
--   ~~Bisa ngeACC judul Tugas Akhir~~ ( Rampung )
+### Windows
+- Klik Clone or Download silahkan download zip
+- Pindah kedalam folder /xampp/htdocs dan extrak 
+- Buka Comandline atau bisa menggunakan terminal didalam Visual Studio Code, arahkan ke folder projek dengan ketik
+  " cd /xampp/htdocs/sintak "
+- Ketikan " composer install "
+-   Ubah nama file .env.example menjadi .env
+-   Isi nama database
+-   Kembali ke cmd lalu ketik php artisan key:generate (Pada project laravel sintak)
+-   Lalu ketik kembali php artisan migrate --seed
+-   Untuk menjalankan ketik php artisan serve
 
-## Mahasiswa
+### LINUX
+-   Ke folder /lampp/htdocs 
+-   Buka Terminal dengan klik kanan open terminal
+-   ketik "git clone https://github.com/mirza-alim-m/laravel2020-B-G1.git" pada terminal
+-   Ubah nama folder menjadi sintak    
+-   Masuk ke folder project lewat cmd. (cd sintak) *tanpa kurung
+-   Ubah nama file .env.example menjadi .env
+-   Isi nama database
+-   Kembali ke cmd lalu ketik php artisan key:generate (Pada project laravel sintak)
+-   Lalu ketik kembali php artisan migrate --seed
+-   Untuk menjalankan ketik php artisan serve
 
--   ~~Bisa input judul TA ( Kurang nampilna dosen pembimbinge )~~ ( Rampung )
-
-### Cara install
-
--   Terminal
--   git clone <url-repo kie>
--   composer install
--   copy .env.example , rename gdi .env
--   isi nama database
--   php artisan key:generate
--   php artisan migrate --seed
+*note apabila terjadi eror setelah perintah " composer install ", silahkan ketikan "composer update"
