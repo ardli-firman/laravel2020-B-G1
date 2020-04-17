@@ -41,3 +41,7 @@
 -   Untuk menjalankan ketik php artisan serve
 
 *note apabila terjadi eror setelah perintah " composer install ", silahkan ketikan "composer update"
+
+# DEMO:
+laravel-b1.tegalian.com
+tester1@mailinator.com : 123
