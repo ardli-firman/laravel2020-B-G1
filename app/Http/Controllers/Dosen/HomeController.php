@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Dosen;
 
 use App\Http\Controllers\Controller;
+use App\JudulTugasAkhir;
 use Illuminate\Http\Request;
 
 class HomeController extends Controller
@@ -14,7 +15,8 @@ class HomeController extends Controller
      */
     public function index()
     {
-        return view('dosen.dashboard');
+        $judulta = JudulTugasAkhir::count();
+        return view('dosen.dashboard', compact('judulta'));
     }
 
     /**

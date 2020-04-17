@@ -1,20 +1,22 @@
 <?php
- 
+
 namespace App\Http\Controllers\Kaprodi;
- 
+
 use App\Http\Controllers\Controller;
+use App\JudulTugasAkhir;
 use Illuminate\Http\Request;
- 
+
 class HomeController extends Controller
 {
-     /**
+    /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
     public function index()
     {
-        return view('kaprodi.dashboard');
+        $judulta = JudulTugasAkhir::count();
+        return view('kaprodi.dashboard', compact('judulta'));
     }
 
     /**
