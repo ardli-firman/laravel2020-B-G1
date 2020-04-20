@@ -105,15 +105,18 @@ class MahasiswaBaseService
         $res = $this->request->validate($this->rulesBatch());
         $result = file_get_contents($res['file']->getRealPath(), true);
         $resDecode = json_decode($result);
-        for ($i = 0; $i < count($resDecode); $i++) {
-            $arrResult[] = (array) $resDecode[$i];
-            $arrResult[$i]['password'] = Hash::make($arrResult[$i]['nim']);
+        if ($resDecode != null) {
+            for ($i = 0; $i < count($resDecode); $i++) {
+                $arrResult[] = (array) $resDecode[$i];
+                $arrResult[$i]['password'] = Hash::make($arrResult[$i]['nim']);
+            }
+            foreach ($arrResult as $value) {
+                validator($value, $this->rules(), ['nim.unique' => 'NIM ' . $value['nim'] . ' has already been taken.'])->validate();
+            }
+            $mahasiswa = Mahasiswa::insert($arrResult);
+            return $mahasiswa;
         }
-        foreach ($arrResult as $value) {
-            validator($value, $this->rules(), ['nim.unique' => 'NIM ' . $value['nim'] . ' has already been taken.'])->validate();
-        }
-        $mahasiswa = Mahasiswa::create($arrResult);
-        return $mahasiswa;
+        return false;
     }
 
     public function rulesBatch()

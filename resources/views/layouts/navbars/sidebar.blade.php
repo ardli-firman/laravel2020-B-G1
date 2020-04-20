@@ -94,17 +94,17 @@
                             <ul class="nav nav-sm flex-column">
                                 <li class="nav-item">
                                     <a class="nav-link" href="{{ route('admin.master.mahasiswa.index') }}">
-                                        <i class="ni ni-planet text-blue"></i> {{ __('Mahasiswa') }}
+                                        <i class="text-blue"></i> {{ __('Mahasiswa') }}
                                     </a>
                                 </li>
                                 <li class="nav-item">
                                     <a class="nav-link" href="{{ route('admin.master.kaprodi.index') }}">
-                                        <i class="ni ni-planet text-blue"></i> {{ __('Kaprodi') }}
+                                        <i class="text-blue"></i> {{ __('Kaprodi') }}
                                     </a>
                                 </li>
                                 <li class="nav-item">
                                     <a class="nav-link" href="{{ route('admin.master.dosen.index') }}">
-                                        <i class="ni ni-planet text-blue"></i> {{ __('Dosen') }}
+                                        <i class="text-blue"></i> {{ __('Dosen') }}
                                     </a>
                                 </li>
                         </ul>
@@ -165,7 +165,7 @@
                 </li>
                 @endauth
             </ul>
-            <!-- Divider -->
+            {{-- <!-- Divider -->
             <hr class="my-3">
             <!-- Heading -->
             <h6 class="navbar-heading text-muted">Documentation</h6>
@@ -186,7 +186,7 @@
                         <i class="ni ni-ui-04"></i> Components
                     </a>
                 </li>
-            </ul>
+            </ul> --}}
         </div>
     </div>
 </nav>
