@@ -44,4 +44,15 @@
 
 # DEMO:
 laravel-b1.tegalian.com
-tester1@mailinator.com : 123
+
+### Admin
+tester.admin@mailinator.com : 123
+
+### Dosen
+tester.dosen@mailinator.com : 123
+
+### Kaprodi
+tester.kaprodi@mailinator.com : 123
+
+### Mahasiswa
+12345678 : 123
