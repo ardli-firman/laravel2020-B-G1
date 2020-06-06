@@ -5,6 +5,7 @@ namespace App\Http\Services;
 use App\Admin;
 use App\Dosen;
 use App\Kaprodi;
+use App\Mahasiswa;
 use Illuminate\Support\Facades\Auth;
 
 class AuthService
@@ -28,17 +29,7 @@ class AuthService
         $pengurus['email'] = $data['username'];
         $pengurus['password'] = $data['password'];
 
-        $admin = Admin::where('email', '=', $pengurus['email'])->get();
-        $dosen = Dosen::where('email', '=', $pengurus['email'])->get();
-        $kaprodi = Kaprodi::where('email', '=', $pengurus['email'])->get();
-
-        if (!$admin->isEmpty()) {
-            $guard = 'admin';
-        } elseif (!$dosen->isEmpty()) {
-            $guard = 'dosen';
-        } elseif (!$kaprodi->isEmpty()) {
-            $guard = 'kaprodi';
-        };
+        $guard = $this->getAllEmail($pengurus);
 
         if ($guard != null) {
             $res = $this->attemptLogin($guard, $pengurus);
@@ -52,5 +43,25 @@ class AuthService
     public function attemptLogin($guard = null, $data = null)
     {
         return Auth::guard($guard)->attempt($data);
+    }
+
+    public function getAllEmail($user)
+    {
+        $admin = Admin::where('email', '=', $user['email'])->get();
+        $dosen = Dosen::where('email', '=', $user['email'])->get();
+        $kaprodi = Kaprodi::where('email', '=', $user['email'])->get();
+        $mahasiswa = Mahasiswa::where('email', '=', $user['email'])->get();
+
+        if (!$admin->isEmpty()) {
+            $guard = 'admin';
+        } elseif (!$dosen->isEmpty()) {
+            $guard = 'dosen';
+        } elseif (!$kaprodi->isEmpty()) {
+            $guard = 'kaprodi';
+        } elseif (!$mahasiswa->isEmpty()) {
+            $guard = 'mahasiswa';
+        }
+
+        return $guard;
     }
 }
