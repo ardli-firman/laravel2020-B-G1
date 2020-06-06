@@ -37,6 +37,7 @@ Auth::routes();
 Route::prefix('mahasiswa')->name('mahasiswa.')->middleware(['auth:mahasiswa'])->group(function () {
     Route::get('/home', 'Mahasiswa\HomeController@index')->name('home');
     Route::resource('/TA', 'Mahasiswa\TAController');
+    Route::resource('profile', 'Mahasiswa\SettingUserProfileController');
 });
 
 Route::prefix('admin')->name('admin.')->middleware(['auth:admin'])->group(function () {
@@ -51,12 +52,14 @@ Route::prefix('admin')->name('admin.')->middleware(['auth:admin'])->group(functi
         Route::resource('kaprodi', 'Admin\ManagemenKaprodiController');
         Route::resource('dosen', 'Admin\ManagemenDosenController');
     });
+    Route::resource('profile', 'Admin\SettingUserProfileController');
 });
 
 Route::prefix('kaprodi')->name('kaprodi.')->middleware(['auth:kaprodi'])->group(function () {
     Route::get('/home', 'Kaprodi\HomeController@index')->name('home');
     Route::resource('/TA', 'Kaprodi\ListTAController');
     Route::resource('/pembimbing', 'Kaprodi\PembimbingController');
+    Route::resource('profile', 'Kaprodi\SettingUserProfileController');
 });
 
 // Route::group(['middleware' => ['auth:dosen']], function () {
@@ -66,4 +69,5 @@ Route::prefix('kaprodi')->name('kaprodi.')->middleware(['auth:kaprodi'])->group(
 Route::prefix('dosen')->name('dosen.')->middleware(['auth:dosen'])->group(function () {
     Route::get('/home', 'Dosen\HomeController@index')->name('home');
     Route::resource('managemen', 'Dosen\ManagemenJudulController');
+    Route::resource('profile', 'Dosen\SettingUserProfileController');
 });

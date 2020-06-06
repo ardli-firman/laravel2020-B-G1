@@ -19,6 +19,10 @@
                             {!! Form::text('nim', $mahasiswa->nim, ['class'=>'form-control form-control-alternative','placeholder'=>'Email','disabled'=>true]) !!}
                         </div>
                         <div class="form-group">
+                            {!! Form::label('email', 'Email') !!}
+                            {!! Form::email('email', $mahasiswa->email, ['class'=>'form-control form-control-alternative','placeholder'=>'Email', 'disabled' => true]) !!}
+                        </div>
+                        <div class="form-group">
                             {!! Form::label('semester', 'Semester') !!}
                             {!! Form::text('semester', $mahasiswa->semester, ['class'=>'form-control form-control-alternative','placeholder'=>'Semester','disabled'=>true]) !!}
                         </div>

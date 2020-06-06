@@ -87,6 +87,10 @@ class MahasiswaBaseService
             $mahasiswa->nim = $this->request->nim;
         }
 
+        if ($mahasiswa->email != $this->request->email) {
+            $mahasiswa->email = $this->request->email;
+        }
+
         $mahasiswa->kelas = $this->request->kelas;
         $mahasiswa->nama = $this->request->nama;
         $mahasiswa->semester = $this->request->semester;
@@ -131,8 +135,9 @@ class MahasiswaBaseService
         $rules = [
             'nama' => 'required',
             'kelas' => 'required',
+            'email' => 'required|email',
             'nim' => 'required|unique:mahasiswa|regex:/(([0-9]){8})/',
-            'semester' => 'required',
+            'semester' => 'required|regex:/[1-8]/',
             'tahun' => 'required',
         ];
 

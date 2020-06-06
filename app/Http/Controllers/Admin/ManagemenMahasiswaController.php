@@ -30,6 +30,9 @@ class ManagemenMahasiswaController extends Controller
                 ->editColumn('nim', function ($data) {
                     return $data->nim;
                 })
+                ->editColumn('email', function ($data) {
+                    return $data->email;
+                })
                 ->addColumn('aksi', function ($data) {
                     $btn = view('admin.managemen_user.mahasiswa.view.viewform', compact('data'));
                     return $btn;

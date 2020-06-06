@@ -22,6 +22,7 @@ class MahasiswaSeeder extends Seeder
             }
             DB::table('mahasiswa')->insert([
                 'nim' => $nim,
+                'email' => $faker->email,
                 'nama' => $faker->name,
                 'semester' => '6',
                 'kelas' =>  $faker->randomElement($kelas),

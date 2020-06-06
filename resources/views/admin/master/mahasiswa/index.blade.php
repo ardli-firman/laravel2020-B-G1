@@ -64,6 +64,7 @@
                                     <tr>
                                         <th scope="col">No</th>
                                         <th scope="col">Nama</th>
+                                        <th scope="col">Email</th>
                                         <th scope="col">NIM</th>
                                         <th scope="col">Kelas</th>
                                         <th scope="col">Aksi</th>
@@ -94,6 +95,7 @@
                 columns: [
                     {data: 'DT_RowIndex', name: 'DT_RowIndex', orderable: false, searchable: false},
                     {data: 'nama', name: 'nama'},
+                    {data: 'email', name: 'email'},
                     {data: 'nim', name: 'nim'},
                     {data: 'kelas', name: 'kelas'},
                     {data: 'aksi', name: 'aksi', orderable: false, searchable: false},

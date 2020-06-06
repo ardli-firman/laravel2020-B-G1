@@ -20,11 +20,11 @@
                 </a>
                 <div class="dropdown-menu dropdown-menu-arrow dropdown-menu-right">
                     <div class=" dropdown-header noti-title">
-                        <h6 class="text-overflow m-0">{{ __('Welcome!') }}</h6>
+                        <h6 class="text-overflow m-0">{{ __('Setting') }}</h6>
                     </div>
-                    {{-- <a href="{{ route('profile.edit') }}" class="dropdown-item">
+                    {{-- <a href="" class="dropdown-item">
                         <i class="ni ni-single-02"></i>
-                        <span>{{ __('My profile') }}</span>
+                        <span>{{ __('Ubah password') }}</span>
                     </a> --}}
                     {{-- <a href="#" class="dropdown-item">
                         <i class="ni ni-settings-gear-65"></i>
@@ -44,6 +44,30 @@
                         <i class="ni ni-user-run"></i>
                         <span>{{ __('Logout') }}</span>
                     </a>
+                    @auth("admin")
+                    <a href="{{ route('admin.profile.index')}}" class="dropdown-item">
+                        <i class="ni ni-settings-gear-65"></i>
+                        <span>{{ __('Ubah password') }}</span>
+                    </a>
+                    @endauth
+                    @auth("dosen")
+                    <a href="{{ route('dosen.profile.index')}}" class="dropdown-item">
+                        <i class="ni ni-settings-gear-65"></i>
+                        <span>{{ __('Ubah password') }}</span>
+                    </a>
+                    @endauth
+                    @auth("kaprodi")
+                    <a href="{{ route('kaprodi.profile.index')}}" class="dropdown-item">
+                        <i class="ni ni-settings-gear-65"></i>
+                        <span>{{ __('Ubah password') }}</span>
+                    </a>
+                    @endauth
+                    @auth("mahasiswa")
+                    <a href="{{ route('mahasiswa.profile.index')}}" class="dropdown-item">
+                        <i class="ni ni-settings-gear-65"></i>
+                        <span>{{ __('Ubah password') }}</span>
+                    </a>
+                    @endauth
                 </div>
             </li>
         </ul>

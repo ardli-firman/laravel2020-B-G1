@@ -1,4 +1,4 @@
-@extends('layouts.app',['navTitle' => 'Managemen user / Mahasiswa / Edit'])
+@extends('layouts.app',['navTitle' => 'Edit Profile'])
 
 @section('content')
 @include('layouts.headers.cards')
@@ -25,33 +25,17 @@
         <div class="row-md-12 mt-3">
             <div class="card">
                 <div class="card-header">
-                    <h1>Edit {{$mahasiswa->nim}}</h1>
+                    <h1>Edit profile</h1>
                 </div>
-                {!! Form::open(['route'=>['admin.managemen.mahasiswa.update',$mahasiswa->nim],'method'=>'put']) !!}
+                {!! Form::open(['route'=>['kaprodi.profile.update',$kaprodi->id],'method'=>'put']) !!}
                 <div class="card-body">
                         <div class="form-group">
                             {!! Form::label('nama', 'Nama') !!}
-                            {!! Form::text('nama', $mahasiswa->nama, ['class'=>'form-control form-control-alternative','placeholder'=>'Nama']) !!}
-                        </div>
-                        <div class="form-group">
-                            {!! Form::label('nim', 'NIM') !!}
-                            {!! Form::text('nim', $mahasiswa->nim, ['class'=>'form-control form-control-alternative','placeholder'=>'NIM']) !!}
+                            {!! Form::text('nama', $kaprodi->nama, ['class'=>'form-control form-control-alternative','placeholder'=>'Nama']) !!}
                         </div>
                         <div class="form-group">
                             {!! Form::label('email', 'Email') !!}
-                            {!! Form::email('email', $mahasiswa->email, ['class'=>'form-control form-control-alternative','placeholder'=>'Email']) !!}
-                        </div>
-                        <div class="form-group">
-                            {!! Form::label('semester', 'Semester') !!}
-                            {!! Form::text('semester', $mahasiswa->semester, ['class'=>'form-control form-control-alternative','placeholder'=>'Semester']) !!}
-                        </div>
-                        <div class="form-group">
-                            {!! Form::label('kelas', 'Kelas') !!}
-                            {!! Form::select('kelas', ['A'=>'A','B'=>'B','C'=>'C','D'=>'D'], $mahasiswa->kelas, ['class'=>'form-control form-control-alternative']) !!}
-                        </div>
-                        <div class="form-group">
-                            {!! Form::label('tahun', 'Tahun') !!}
-                            {!! Form::text('tahun', $mahasiswa->tahun, ['class'=>'form-control form-control-alternative','placeholder'=>'Tahun']) !!}
+                            {!! Form::email('email', $kaprodi->email, ['class'=>'form-control form-control-alternative','placeholder'=>'Email']) !!}
                         </div>
                         <hr>
                         <div class="form-group">
@@ -65,8 +49,8 @@
                         </div>
                     </div>
                     <div class="card-footer">
-                        <a type="button" href="{{route('admin.managemen.mahasiswa.index')}}" class="btn btn-secondary">Kembali</a>
-                        <button type="submit" class="btn btn-primary" >Simpan</button>
+                        <a type="button" href="{{route('home')}}" class="btn btn-secondary">Kembali</a>
+                        <button type="submit" class="btn btn-primary">Simpan</button>
                     </div>
                     {!! Form::close() !!}
             </div>

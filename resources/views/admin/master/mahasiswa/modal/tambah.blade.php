@@ -15,6 +15,9 @@
                     {!! Form::text('nama', '', ['class'=>'form-control form-control-alternative','placeholder'=>'Nama']) !!}
                 </div>
                 <div class="form-group">
+                    {!! Form::email('email', '', ['class'=>'form-control form-control-alternative','placeholder'=>'Email']) !!}
+                </div>
+                <div class="form-group">
                     {!! Form::text('nim', '', ['class'=>'form-control form-control-alternative','placeholder'=>'NIM']) !!}
                 </div>
                 <div class="form-group">
