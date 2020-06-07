@@ -9,12 +9,13 @@
                 <div class="card bg-secondary shadow border-0">
                     <div class="card-body px-lg-5 py-lg-5">
                         <div class="text-center text-muted mb-4">
-                            <small>{{ __('Verify Your Email Address') }}</small>
+                            <small>{{ __('Please Verify Your Email Address') }}</small>
                         </div>
                         <div>
                             @if (session('resent'))
                                 <div class="alert alert-success" role="alert">
                                     {{ __('A fresh verification link has been sent to your email address.') }}
+                                    <p>{{ __('TEST') }}</p>
                                 </div>
                             @endif
                             

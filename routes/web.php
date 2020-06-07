@@ -22,6 +22,12 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+Route::get('/register-pick', function () {
+    return view('reg_pick');
+});
+
+Route::get('/mahasiswa-register','Auth\RegisterController@showRegisterPage');
+
 Route::get('/home', function () {
     $guards = ['mahasiswa', 'admin', 'kaprodi', 'dosen'];
     foreach ($guards as $guard) {
@@ -32,7 +38,7 @@ Route::get('/home', function () {
     return view('welcome');
 })->name('home');
 
-Auth::routes();
+Auth::routes(['verify' => true]);
 
 Route::prefix('mahasiswa')->name('mahasiswa.')->middleware(['auth:mahasiswa'])->group(function () {
     Route::get('/home', 'Mahasiswa\HomeController@index')->name('home');
