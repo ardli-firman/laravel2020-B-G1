@@ -31,23 +31,16 @@ class LoginController extends Controller
     public function login(Request $request)
     {
         $data = $this->validateLogin($request);
-        $mhsLogin = preg_match("/(([0-9]){8})/", $data['username']);
-        if ($mhsLogin) {
-            $res = $this->authService->mahasiswaLogin($data);
-        } else {
-            $res = $this->authService->pengurusLogin($data);
-        }
+        $res = $this->authService->login($data);
 
+        // $mhsLogin = preg_match("/(([0-9]){8})/", $data['username']);
+        // if ($mhsLogin) {
+        //     $res = $this->authService->mahasiswaLogin($data);
+        // } else {
+        //     $res = $this->authService->pengurusLogin($data);
+        // }
         if ($res) {
-            if (Auth::guard('mahasiswa')->check()) {
-                return redirect()->intended('/mahasiswa/home');
-            } else if (Auth::guard('admin')->check()) {
-                return redirect()->intended('/admin/home');
-            } else if (Auth::guard('kaprodi')->check()) {
-                return redirect()->intended('/kaprodi/home');
-            } else if (Auth::guard('dosen')->check()) {
-                return redirect()->intended('/dosen/home');
-            };
+            return redirect()->route('home');
         }
 
         return $this->sendFailedLoginResponse($request);

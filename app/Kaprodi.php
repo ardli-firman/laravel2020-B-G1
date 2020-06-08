@@ -15,4 +15,10 @@ class Kaprodi extends Authenticatable implements MustVerifyEmail
 
     protected $guarded = [];
     protected $guard = 'kaprodi';
+
+    // custom
+    public function getGuardName()
+    {
+        return $this->guard;
+    }
 }

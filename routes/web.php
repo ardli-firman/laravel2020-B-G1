@@ -41,7 +41,7 @@ Route::get('/home', function () {
         }
     }
     return view('welcome');
-})->name('home');
+})->name('home')->middleware(['verified']);
 
 Auth::routes(['verify' => true]);
 

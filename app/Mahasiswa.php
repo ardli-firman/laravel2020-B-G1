@@ -40,4 +40,10 @@ class Mahasiswa extends Authenticatable implements MustVerifyEmail
     {
         return $this->hasMany(Pembimbing::class, 'nim');
     }
+
+    // custom
+    public function getGuardName()
+    {
+        return $this->guard;
+    }
 }

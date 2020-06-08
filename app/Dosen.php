@@ -20,4 +20,10 @@ class Dosen extends Authenticatable implements MustVerifyEmail
     {
         return $this->hasMany(Pembimbing::class);
     }
+
+    // custom
+    public function getGuardName()
+    {
+        return $this->guard;
+    }
 }

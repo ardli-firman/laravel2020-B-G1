@@ -13,4 +13,10 @@ class Admin extends Authenticatable
     protected $table = 'admin';
     protected $guarded = [];
     protected $guard = 'admin';
+
+    // custom
+    public function getGuardName()
+    {
+        return $this->guard;
+    }
 }
