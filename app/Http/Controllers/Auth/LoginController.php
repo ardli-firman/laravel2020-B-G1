@@ -8,6 +8,7 @@ use App\Providers\RouteServiceProvider;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Validation\ValidationException;
 
 class LoginController extends Controller
 {
@@ -36,6 +37,7 @@ class LoginController extends Controller
         } else {
             $res = $this->authService->pengurusLogin($data);
         }
+
         if ($res) {
             if (Auth::guard('mahasiswa')->check()) {
                 return redirect()->intended('/mahasiswa/home');
@@ -47,6 +49,7 @@ class LoginController extends Controller
                 return redirect()->intended('/dosen/home');
             };
         }
+
         return $this->sendFailedLoginResponse($request);
     }
 
@@ -55,6 +58,13 @@ class LoginController extends Controller
         return $request->validate([
             $this->username() => ['required', 'string', 'regex:/(([0-9]){8})|(^.+@.+$)/'],
             'password' => 'required|string',
+        ]);
+    }
+
+    protected function sendFailedLoginResponse(Request $request)
+    {
+        throw ValidationException::withMessages([
+            $this->username() => "Credentials not found or yet verified email",
         ]);
     }
 }

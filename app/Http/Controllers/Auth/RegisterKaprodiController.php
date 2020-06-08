@@ -3,6 +3,8 @@
 namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
+use App\Http\Services\Kaprodi\KaprodiBaseService;
+use App\Kaprodi;
 use App\Mahasiswa;
 use App\Providers\RouteServiceProvider;
 use App\User;
@@ -13,9 +15,9 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
 
-class RegisterController extends Controller
+class RegisterKaprodiController extends Controller
 {
-    protected $redirectTo = '/oke';
+    protected $redirectTo = '/registrasi/kaprodi';
 
     public function __construct()
     {
@@ -24,7 +26,7 @@ class RegisterController extends Controller
 
     public function showRegistrationForm()
     {
-        return view('auth.register');
+        return view('auth.register_kap');
     }
 
     public function register(Request $request)
@@ -33,45 +35,37 @@ class RegisterController extends Controller
 
         event(new Registered($user = $this->create($request->all())));
 
-        $this->guard('mahasiswa')->login($user);
+        $this->guard('kaprodi')->login($user);
 
         return $this->registered($request, $user)
-            ?: redirect($this->redirectPath());
+            ?: redirect()->route('registrasi.kaprodi')->withErrors('Gagal');
     }
 
     protected function guard()
     {
-        return Auth::guard('mahasiswa');
+        return Auth::guard('kaprodi');
     }
 
     protected function validator(array $data)
     {
         return Validator::make($data, [
-            'nim' => ['required', 'string', 'max:191'],
-            'email' => ['required', 'string', 'email', 'max:255', 'unique:mahasiswa'],
+            'email' => ['required', 'string', 'email', 'max:255', 'unique:kaprodi', 'unique:dosen'],
             'nama' => ['required', 'string', 'max:255'],
-            'semester' => ['required', 'string', 'max:1'],
-            'kelas' => ['required', 'string', 'max:2'],
-            'tahun' => ['required', 'string', 'max:4'],
             'password' => ['required', 'string', 'min:8', 'confirmed'],
         ]);
     }
 
     protected function create(array $data)
     {
-        return Mahasiswa::create([
-            'nim' => $data['nim'],
+        return Kaprodi::create([
             'email' => $data['email'],
             'nama' => $data['nama'],
-            'semester' => $data['semester'],
-            'kelas' => $data['kelas'],
-            'tahun' => $data['tahun'],
             'password' => Hash::make($data['password']),
         ]);
     }
 
     protected function registered(Request $request, $user)
     {
-        return redirect()->route('registrasi.mahasiswa')->withSuccess('Silahkan cek email');
+        return redirect()->route('registrasi.kaprodi')->withSuccess('Silahkan cek email');
     }
 }

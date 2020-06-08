@@ -26,8 +26,13 @@ Route::get('/register-pick', function () {
     return view('reg_pick');
 });
 
-Route::get('/mahasiswa-register','Auth\RegisterController@showRegisterPage');
-
+Route::prefix('registrasi')->name('registrasi.')->middleware(['guest'])->group(function () {
+    Route::get('mahasiswa', 'Auth\RegisterController@showRegistrationForm')->name('mahasiswa');
+    Route::get('kaprodi', 'Auth\RegisterKaprodiController@showRegistrationForm')->name('kaprodi');
+    Route::post('kaprodi', 'Auth\RegisterKaprodiController@register')->name('kaprodi');
+    Route::get('dosen', 'Auth\RegisterDosenController@showRegistrationForm')->name('dosen');
+    Route::post('dosen', 'Auth\RegisterDosenController@register')->name('dosen');
+});
 Route::get('/home', function () {
     $guards = ['mahasiswa', 'admin', 'kaprodi', 'dosen'];
     foreach ($guards as $guard) {
@@ -40,7 +45,7 @@ Route::get('/home', function () {
 
 Auth::routes(['verify' => true]);
 
-Route::prefix('mahasiswa')->name('mahasiswa.')->middleware(['auth:mahasiswa'])->group(function () {
+Route::prefix('mahasiswa')->name('mahasiswa.')->middleware(['auth:mahasiswa', 'verified'])->group(function () {
     Route::get('/home', 'Mahasiswa\HomeController@index')->name('home');
     Route::resource('/TA', 'Mahasiswa\TAController');
     Route::resource('profile', 'Mahasiswa\SettingUserProfileController');
@@ -61,7 +66,7 @@ Route::prefix('admin')->name('admin.')->middleware(['auth:admin'])->group(functi
     Route::resource('profile', 'Admin\SettingUserProfileController');
 });
 
-Route::prefix('kaprodi')->name('kaprodi.')->middleware(['auth:kaprodi'])->group(function () {
+Route::prefix('kaprodi')->name('kaprodi.')->middleware(['auth:kaprodi', 'verified'])->group(function () {
     Route::get('/home', 'Kaprodi\HomeController@index')->name('home');
     Route::resource('/TA', 'Kaprodi\ListTAController');
     Route::resource('/pembimbing', 'Kaprodi\PembimbingController');
@@ -72,7 +77,7 @@ Route::prefix('kaprodi')->name('kaprodi.')->middleware(['auth:kaprodi'])->group(
 //     Route::get('/home', 'Dosen\DosenController@index')->name('home');
 // });
 
-Route::prefix('dosen')->name('dosen.')->middleware(['auth:dosen'])->group(function () {
+Route::prefix('dosen')->name('dosen.')->middleware(['auth:dosen', 'verified'])->group(function () {
     Route::get('/home', 'Dosen\HomeController@index')->name('home');
     Route::resource('managemen', 'Dosen\ManagemenJudulController');
     Route::resource('profile', 'Dosen\SettingUserProfileController');

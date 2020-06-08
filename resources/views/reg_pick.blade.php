@@ -16,7 +16,7 @@
                     </div>
                     <div class="card-body px-lg-5 py-lg-5">
 
-                    <a href="#" class="btn btn-outline-default btn-lg btn-block py-lg-2" type="button">
+                    <a href="{{route('registrasi.kaprodi')}}" class="btn btn-outline-default btn-lg btn-block py-lg-2" type="button">
 	                        <span class="btn-inner--icon py-lg-5"><div class="icon icon-shape bg-secondary text-dark rounded-circle shadow">
                             <i class="ni ni-hat-3"></i></div></span>
                             <div class="row">
@@ -26,7 +26,7 @@
                             </div>
                             </a>
 
-                            <a href="#" class="btn btn-outline-default btn-lg btn-block py-lg-2" type="button">
+                            <a href="{{route('registrasi.dosen')}}" class="btn btn-outline-default btn-lg btn-block py-lg-2" type="button">
 	                        <span class="btn-inner--icon py-lg-5"><div class="icon icon-shape bg-secondary text-dark rounded-circle shadow">
                             <i class="ni ni-hat-3"></i></div></span>
                             <div class="row">
@@ -36,7 +36,7 @@
                             </div>
                             </a>
 
-                            <a href="/mahasiswa-register" class="btn btn-outline-default btn-lg btn-block py-lg-2" type="button">
+                            <a href="{{route('registrasi.mahasiswa')}}" class="btn btn-outline-default btn-lg btn-block py-lg-2" type="button">
 	                        <span class="btn-inner--icon py-lg-5"><div class="icon icon-shape bg-secondary text-dark rounded-circle shadow">
                             <i class="ni ni-hat-3"></i></div></span>
                             <div class="row">
@@ -45,7 +45,7 @@
                             </div>
                             </div>
                             </a>
-                            
+
                     </div>
                 </div>
                 <div class="row mt-3">
@@ -58,7 +58,7 @@
                 </div>
                 </div>
             </div>
-           
+
         </div>
     </div>
 @endsection

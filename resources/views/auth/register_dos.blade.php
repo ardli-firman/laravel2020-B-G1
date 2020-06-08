@@ -16,24 +16,10 @@
                             </div>
                         @endif
                         <div class="text-center text-muted mb-4">
-                            <small>{{ __('Sign up for Mahasiswa') }}</small>
+                            <small>{{ __('Sign up for Dosen') }}</small>
                         </div>
-                        <form role="form" method="POST" action="{{ route('register') }}">
+                        <form role="form" method="POST" action="{{ route('registrasi.dosen') }}">
                             @csrf
-
-                            <div class="form-group{{ $errors->has('nim') ? ' has-danger' : '' }}">
-                                <div class="input-group input-group-alternative mb-3">
-                                    <div class="input-group-prepend">
-                                        <span class="input-group-text"><i class="ni ni-hat-3"></i></span>
-                                    </div>
-                                    <input class="form-control{{ $errors->has('nim') ? ' is-invalid' : '' }}" placeholder="{{ __('Nim') }}" type="text" name="nim" value="{{ old('nim') }}" required autofocus>
-                                </div>
-                                @if ($errors->has('nim'))
-                                    <span class="invalid-feedback" style="display: block;" role="alert">
-                                        <strong>{{ $errors->first('nim') }}</strong>
-                                    </span>
-                                @endif
-                            </div>
 
                             <div class="form-group{{ $errors->has('email') ? ' has-danger' : '' }}">
                                 <div class="input-group input-group-alternative mb-3">
@@ -59,58 +45,6 @@
                                 @if ($errors->has('nama'))
                                     <span class="invalid-feedback" style="display: block;" role="alert">
                                         <strong>{{ $errors->first('nama') }}</strong>
-                                    </span>
-                                @endif
-                            </div>
-
-                            <div class="form-group{{ $errors->has('semester') ? ' has-danger' : '' }}">
-                                <div class="input-group input-group-alternative mb-3">
-                                    <div class="input-group-prepend">
-                                        <span class="input-group-text"><i class="ni ni-collection"></i></span>
-                                    </div>
-                                    <input class="form-control{{ $errors->has('semester') ? ' is-invalid' : '' }}" placeholder="{{ __('Semester') }}" type="text" name="semester" value="{{ old('semester') }}" required autofocus>
-                                </div>
-                                @if ($errors->has('semester'))
-                                    <span class="invalid-feedback" style="display: block;" role="alert">
-                                        <strong>{{ $errors->first('semester') }}</strong>
-                                    </span>
-                                @endif
-                            </div>
-
-                            <div class="form-group">
-    <select class="form-control form-control-alternative" id="kelas" name="kelas">
-      <option>--Kelas--</option>
-      <option>A</option>
-      <option>B</option>
-      <option>C</option>
-      <option>D</option>
-    </select>
-  </div>
-
-                            <!-- <div class="form-group{{ $errors->has('kelas') ? ' has-danger' : '' }}">
-                                <div class="input-group input-group-alternative mb-3">
-                                    <div class="input-group-prepend">
-                                        <span class="input-group-text"><i class="ni ni-badge"></i></span>
-                                    </div>
-                                    <input class="form-control{{ $errors->has('kelas') ? ' is-invalid' : '' }}" placeholder="{{ __('Kelas') }}" type="text" name="kelas" value="{{ old('kelas') }}" required autofocus>
-                                </div>
-                                @if ($errors->has('kelas'))
-                                    <span class="invalid-feedback" style="display: block;" role="alert">
-                                        <strong>{{ $errors->first('kelas') }}</strong>
-                                    </span>
-                                @endif
-                            </div> -->
-
-                            <div class="form-group{{ $errors->has('tahun') ? ' has-danger' : '' }}">
-                                <div class="input-group input-group-alternative mb-3">
-                                    <div class="input-group-prepend">
-                                        <span class="input-group-text"><i class="ni ni-world-2"></i></span>
-                                    </div>
-                                    <input class="form-control{{ $errors->has('tahun') ? ' is-invalid' : '' }}" placeholder="{{ __('Tahun') }}" type="text" name="tahun" value="{{ old('tahun') }}" required autofocus>
-                                </div>
-                                @if ($errors->has('tahun'))
-                                    <span class="invalid-feedback" style="display: block;" role="alert">
-                                        <strong>{{ $errors->first('tahun') }}</strong>
                                     </span>
                                 @endif
                             </div>

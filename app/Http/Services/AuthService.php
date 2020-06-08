@@ -30,7 +30,6 @@ class AuthService
         $pengurus['password'] = $data['password'];
 
         $guard = $this->getAllEmail($pengurus);
-
         if ($guard != null) {
             $res = $this->attemptLogin($guard, $pengurus);
             if ($res) {
@@ -47,10 +46,34 @@ class AuthService
 
     public function getAllEmail($user)
     {
+        $guard = null;
+
         $admin = Admin::where('email', '=', $user['email'])->get();
         $dosen = Dosen::where('email', '=', $user['email'])->get();
         $kaprodi = Kaprodi::where('email', '=', $user['email'])->get();
         $mahasiswa = Mahasiswa::where('email', '=', $user['email'])->get();
+
+        if (!$admin->isEmpty()) {
+            $guard = 'admin';
+        } elseif (!$dosen->isEmpty()) {
+            $guard = 'dosen';
+        } elseif (!$kaprodi->isEmpty()) {
+            $guard = 'kaprodi';
+        } elseif (!$mahasiswa->isEmpty()) {
+            $guard = 'mahasiswa';
+        }
+
+        return $guard;
+    }
+
+    public function getGuardById($id)
+    {
+        $guard = null;
+
+        $admin = Admin::where('id', '=', $id)->get();
+        $dosen = Dosen::where('id', '=', $id)->get();
+        $kaprodi = Kaprodi::where('id', '=', $id)->get();
+        $mahasiswa = Mahasiswa::where('nim', '=', $id)->get();
 
         if (!$admin->isEmpty()) {
             $guard = 'admin';

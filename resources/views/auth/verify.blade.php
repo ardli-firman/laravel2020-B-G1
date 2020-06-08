@@ -18,7 +18,7 @@
                                     <p>{{ __('TEST') }}</p>
                                 </div>
                             @endif
-                            
+
                             {{ __('Before proceeding, please check your email for a verification link.') }}
                             @if (Route::has('verification.resend'))
                                 {{ __('If you did not receive the email') }},
