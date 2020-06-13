@@ -18,6 +18,7 @@ class DosenSeeder extends Seeder
                 'nama' => $faker->name,
                 'email' => 'dosen' . $i . '@gmail.com',
                 'password' => Hash::make('dosen'),
+                'email_verified_at' => now(),
                 'created_at' => now(),
                 'updated_at' => now()
             ]);

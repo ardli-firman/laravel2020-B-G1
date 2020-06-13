@@ -41,7 +41,7 @@ Route::get('/home', function () {
         }
     }
     return view('welcome');
-})->name('home')->middleware(['verified']);
+})->name('home');
 
 Auth::routes(['verify' => true]);
 
@@ -51,7 +51,7 @@ Route::prefix('mahasiswa')->name('mahasiswa.')->middleware(['auth:mahasiswa', 'v
     Route::resource('profile', 'Mahasiswa\SettingUserProfileController');
 });
 
-Route::prefix('admin')->name('admin.')->middleware(['auth:admin'])->group(function () {
+Route::prefix('admin')->name('admin.')->middleware(['auth:admin', 'verified'])->group(function () {
     Route::get('/home', 'Admin\HomeController@index')->name('home');
     Route::prefix('master')->name('master.')->group(function () {
         Route::resource('mahasiswa', 'Admin\MasterMahasiswaController');

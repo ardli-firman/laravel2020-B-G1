@@ -53,10 +53,6 @@ class AuthService
             return false;
         }
         return $this->attemptLogin($user->getGuardName(), $data);
-        // if (!$user->hasVerifiedEmail()) {
-        //     return 'notverified';
-        // }
-        // dd($user->hasVerifiedEmail());
     }
 
     public function getAllEmail($user)
@@ -123,5 +119,17 @@ class AuthService
         }
 
         return $guard;
+    }
+
+    public function getGuardNameByLogin()
+    {
+        $guards = ['admin', 'mahasiswa', 'kaprodi', 'dosen'];
+
+        foreach ($guards as $guard) {
+            if (Auth::guard($guard)->check()) {
+                return $guard;
+            }
+        }
+        return false;
     }
 }

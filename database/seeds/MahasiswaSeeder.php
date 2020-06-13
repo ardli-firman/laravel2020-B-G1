@@ -28,6 +28,7 @@ class MahasiswaSeeder extends Seeder
                 'kelas' =>  $faker->randomElement($kelas),
                 'tahun' => '2017',
                 'password' => Hash::make('f'),
+                'email_verified_at' => now(),
                 'created_at' => now(),
                 'updated_at' => now()
             ]);

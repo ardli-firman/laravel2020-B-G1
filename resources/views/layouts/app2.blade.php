@@ -44,7 +44,7 @@
     <body class="{{ $class ?? '' }}">
 
         <div class="main-content">
-            @include('layouts.navbars.navar2')
+            @include('layouts.navbars.navbar2')
             @yield('content')
         </div>
 

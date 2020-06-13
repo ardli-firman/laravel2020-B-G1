@@ -57,7 +57,7 @@ class LoginController extends Controller
     protected function sendFailedLoginResponse(Request $request)
     {
         throw ValidationException::withMessages([
-            $this->username() => "Credentials not found or yet verified email",
+            $this->username() => "Credentials not found",
         ]);
     }
 }
