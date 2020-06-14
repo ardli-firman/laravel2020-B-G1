@@ -40,6 +40,7 @@ class KaprodiBaseService
         $res = $this->request->validate($this->rules());
         $res['password'] = Hash::make($res['password']);
         $res['foto'] = $this->uploadFoto();
+        $res['file'] = $this->uploadFile();
         $kaprodi = Kaprodi::create($res);
         return $kaprodi;
     }
@@ -60,6 +61,10 @@ class KaprodiBaseService
 
         if ($this->request->foto != null) {
             $kaprodi->foto = $this->uploadFoto($kaprodi->foto);
+        }
+
+        if ($this->request->file != null) {
+            $kaprodi->file = $this->uploadFile($kaprodi->file);
         }
 
         $kaprodi->nama = $this->request->nama;

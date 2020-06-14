@@ -20,7 +20,13 @@
                         </div>
                         <div class="form-group">
                             {!! Form::label('foto', 'Foto') !!}
-                            <img src="{{asset('storage/'.$kaprodi->foto)}}" alt="" class="img-thumbnail">
+                        </div>
+                        <div class="form-group">
+                            <img src="{{asset('storage/'.$kaprodi->foto)}}" alt="" class="img-thumbnail" width="200px" height="200px">
+                        </div>
+                        <div class="form-group">
+                            {!! Form::label('file', 'File') !!}
+                            <a href="{{url('storage/'.$kaprodi->file)}}">{{url('storage/'.$kaprodi->file)}}</a>
                         </div>
                 </div>
             </div>

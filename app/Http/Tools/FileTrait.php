@@ -10,6 +10,7 @@ use Illuminate\Support\Facades\Storage;
 trait FileTrait
 {
     protected $uploadFotoLocation = 'public/photos';
+    protected $uploadFileLocation = 'public/files';
 
     public function uploadFoto($photo = null)
     {
@@ -22,23 +23,48 @@ trait FileTrait
 
             $path = request('foto')->store($this->uploadFotoLocation);
             if (is_string($path)) {
-                $photo = explode('/', $path);
-                return $photo[1] . '/' . $photo[2];
+                return $this->getInsertedDb($path);
             }
         }
         return false;
     }
 
-    public function deleteFoto($path = null)
+    public function uploadFile($file = null)
     {
-        $res = $this->checkFoto($path);
+        request()->validate($this->fileRule());
+        if (request()->file('file')->isValid()) {
+
+            if ($file != null) {
+                $this->deleteFile($file);
+            }
+
+            $path = request('file')->store($this->uploadFileLocation);
+            if (is_string($path)) {
+                return $this->getInsertedDb($path);
+            }
+        }
+        return false;
+    }
+
+    public function deleteFile($path = null)
+    {
+        $res = $this->checkFile($path);
         if ($res) {
             return Storage::delete([$res]);
         }
         return false;
     }
 
-    public function checkFoto($path = null)
+    public function deleteFoto($path = null)
+    {
+        $res = $this->checkFile($path);
+        if ($res) {
+            return Storage::delete([$res]);
+        }
+        return false;
+    }
+
+    public function checkFile($path = null)
     {
         $realPath = 'public/' . $path;
         if (Storage::exists($realPath)) {
@@ -47,10 +73,23 @@ trait FileTrait
         return false;
     }
 
+    public function getInsertedDb($path = null)
+    {
+        $file = explode('/', $path);
+        return $file[1] . '/' . $file[2];
+    }
+
     private function photoRule()
     {
         return [
             'foto' => 'required|mimes:jpeg,gif,jpg,png'
+        ];
+    }
+
+    private function fileRule()
+    {
+        return [
+            'file' => 'required|mimes:pdf'
         ];
     }
 }

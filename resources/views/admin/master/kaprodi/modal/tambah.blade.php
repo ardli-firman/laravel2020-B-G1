@@ -27,6 +27,10 @@
                         {!! Form::label('foto', 'Foto') !!}
                         {!! Form::file('foto', ['class' => 'form-control form-control-alternative']) !!}
                     </div>
+                    <div class="form-group">
+                        {!! Form::label('file', 'File') !!}
+                        {!! Form::file('file', ['class' => 'form-control form-control-alternative']) !!}
+                    </div>
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
