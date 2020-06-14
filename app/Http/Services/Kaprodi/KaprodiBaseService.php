@@ -2,13 +2,19 @@
 
 namespace App\Http\Services\Kaprodi;
 
+use App\Http\Inter\UploadAbstract;
+use App\Http\Tools\FileTrait;
 use App\Kaprodi;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 
 class KaprodiBaseService
 {
+
+    use FileTrait;
+
     private $request;
+
     public function __construct(Request $request)
     {
         $this->request = $request;
@@ -33,6 +39,7 @@ class KaprodiBaseService
     {
         $res = $this->request->validate($this->rules());
         $res['password'] = Hash::make($res['password']);
+        $res['foto'] = $this->uploadFoto();
         $kaprodi = Kaprodi::create($res);
         return $kaprodi;
     }
@@ -51,12 +58,17 @@ class KaprodiBaseService
             $kaprodi->email = $this->request->email;
         }
 
+        if ($this->request->foto != null) {
+            $kaprodi->foto = $this->uploadFoto($kaprodi->foto);
+        }
+
         $kaprodi->nama = $this->request->nama;
         return $kaprodi->saveOrFail();
     }
 
     public function delete(Kaprodi $kaprodi)
     {
+        $this->deleteFoto($kaprodi->foto);
         $res = $kaprodi->delete();
         return $res;
     }

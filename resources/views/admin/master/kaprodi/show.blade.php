@@ -18,6 +18,10 @@
                             {!! Form::label('email', 'Email') !!}
                             {!! Form::email('email', $kaprodi->email, ['class'=>'form-control form-control-alternative','placeholder'=>'Email','disabled'=>true]) !!}
                         </div>
+                        <div class="form-group">
+                            {!! Form::label('foto', 'Foto') !!}
+                            <img src="{{asset('storage/'.$kaprodi->foto)}}" alt="" class="img-thumbnail">
+                        </div>
                 </div>
             </div>
         </div>

@@ -18,6 +18,7 @@ class KaprodiSeeder extends Seeder
                 'nama' => $faker->name,
                 'email' => 'kaprodi' . $i . '@gmail.com',
                 'password' => Hash::make('kaprodi'),
+                'foto' => 'argon/img/theme/team-4-800x800.jpg',
                 'email_verified_at' => now(),
                 'created_at' => now(),
                 'updated_at' => now()

@@ -9,7 +9,7 @@
                     <span aria-hidden="true">&times;</span>
                   </button>
                 </div>
-                {!! Form::open(['route'=>'admin.master.kaprodi.store','id'=>'form-tambah-kap']) !!}
+                {!! Form::open(['route'=>'admin.master.kaprodi.store','id'=>'form-tambah-kap','enctype'=>'multipart/form-data']) !!}
                 <div class="modal-body">
                     <div class="form-group">
                         {!! Form::text('nama', '', ['class'=>'form-control form-control-alternative','placeholder'=>'Nama']) !!}
@@ -22,6 +22,10 @@
                     </div>
                     <div class="form-group">
                         {!! Form::password('password_confirmation', ['class'=>'form-control form-control-alternative','placeholder'=>'Konfirmasi password']) !!}
+                    </div>
+                    <div class="form-group">
+                        {!! Form::label('foto', 'Foto') !!}
+                        {!! Form::file('foto', ['class' => 'form-control form-control-alternative']) !!}
                     </div>
                 </div>
                 <div class="modal-footer">

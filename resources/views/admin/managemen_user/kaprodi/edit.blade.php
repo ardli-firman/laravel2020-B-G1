@@ -27,7 +27,7 @@
                 <div class="card-header">
                     <h1>Edit {{$kaprodi->nama}}</h1>
                 </div>
-                {!! Form::open(['route'=>['admin.managemen.kaprodi.update',$kaprodi->id],'method'=>'put']) !!}
+                {!! Form::open(['route'=>['admin.managemen.kaprodi.update',$kaprodi->id],'method'=>'put','enctype' => 'multipart/form-data']) !!}
                 <div class="card-body">
                         <div class="form-group">
                             {!! Form::label('nama', 'Nama') !!}
@@ -36,6 +36,14 @@
                         <div class="form-group">
                             {!! Form::label('email', 'Email') !!}
                             {!! Form::email('email', $kaprodi->email, ['class'=>'form-control form-control-alternative','placeholder'=>'Email']) !!}
+                        </div>
+                        <hr>
+                        <div class="form-group">
+                            <img src="{{asset('storage/'.$kaprodi->foto)}}" alt="" width="200px" height="200px" class="img-thumbnail">
+                        </div>
+                        <div class="form-group">
+                            {!! Form::label('foto', 'Foto') !!}
+                            {!! Form::file('foto', ['class'=>'form-control form-control-alternative']) !!}
                         </div>
                         <hr>
                         <div class="form-group">

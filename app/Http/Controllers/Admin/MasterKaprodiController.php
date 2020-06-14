@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Services\Kaprodi\KaprodiBaseService;
 use App\Http\Services\Mahasiswa\MahasiswaBaseService;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 use Yajra\DataTables\DataTables;
 
 class MasterKaprodiController extends Controller
