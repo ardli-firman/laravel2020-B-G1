@@ -74,6 +74,7 @@ class KaprodiBaseService
     public function delete(Kaprodi $kaprodi)
     {
         $this->deleteFoto($kaprodi->foto);
+        $this->deleteFile($kaprodi->file);
         $res = $kaprodi->delete();
         return $res;
     }

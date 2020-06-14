@@ -19,6 +19,8 @@ class DosenSeeder extends Seeder
                 'email' => 'dosen' . $i . '@gmail.com',
                 'password' => Hash::make('dosen'),
                 'email_verified_at' => now(),
+                'foto' => 'argon/img/theme/team-4-800x800.jpg',
+                'file' => 'argon/img/theme/team-4-800x800.jpg',
                 'created_at' => now(),
                 'updated_at' => now()
             ]);

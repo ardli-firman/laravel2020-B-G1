@@ -18,6 +18,16 @@
                             {!! Form::label('email', 'Email') !!}
                             {!! Form::email('email', $dosen->email, ['class'=>'form-control form-control-alternative','placeholder'=>'Email','disabled'=>true]) !!}
                         </div>
+                        <div class="form-group">
+                                {!! Form::label('foto', 'Foto') !!}
+                            </div>
+                            <div class="form-group">
+                                <img src="{{asset('storage/'.$dosen->foto)}}" alt="" class="img-thumbnail" width="200px" height="200px">
+                            </div>
+                            <div class="form-group">
+                                {!! Form::label('file', 'File') !!}
+                                <a href="{{url('storage/'.$dosen->file)}}">{{url('storage/'.$dosen->file)}}</a>
+                            </div>
                 </div>
             </div>
         </div>

@@ -27,7 +27,7 @@
                 <div class="card-header">
                     <h1>Edit {{$dosen->nama}}</h1>
                 </div>
-                {!! Form::open(['route'=>['admin.managemen.dosen.update',$dosen->id],'method'=>'put']) !!}
+                {!! Form::open(['route'=>['admin.managemen.dosen.update',$dosen->id],'method'=>'put','enctype' => 'multipart/form-data']) !!}
                 <div class="card-body">
                         <div class="form-group">
                             {!! Form::label('nama', 'Nama') !!}
@@ -36,6 +36,22 @@
                         <div class="form-group">
                             {!! Form::label('email', 'Email') !!}
                             {!! Form::email('email', $dosen->email, ['class'=>'form-control form-control-alternative','placeholder'=>'Email']) !!}
+                        </div>
+                        <hr>
+                        <div class="form-group">
+                            <img src="{{asset('storage/'.$dosen->foto)}}" alt="" width="200px" height="200px" class="img-thumbnail">
+                        </div>
+                        <div class="form-group">
+                            {!! Form::label('foto', 'Foto') !!}
+                            {!! Form::file('foto', ['class'=>'form-control form-control-alternative']) !!}
+                        </div>
+                        <hr>
+                        <div class="form-group">
+                            {!! Form::text('f', asset('storage/'.$dosen->file), ['class'=>'form-control form-control-alternative form-control-muted']) !!}
+                        </div>
+                        <div class="form-group">
+                            {!! Form::label('file', 'File') !!}
+                            {!! Form::file('file', ['class'=>'form-control form-control-alternative']) !!}
                         </div>
                         <hr>
                         <div class="form-group">
@@ -49,7 +65,7 @@
                         </div>
                     </div>
                     <div class="card-footer">
-                        <a type="button" href="{{route('admin.managemen.kaprodi.index')}}" class="btn btn-secondary">Kembali</a>
+                        <a type="button" href="{{route('admin.managemen.dosen.index')}}" class="btn btn-secondary">Kembali</a>
                         <button type="submit" class="btn btn-primary" >Simpan</button>
                     </div>
                     {!! Form::close() !!}
