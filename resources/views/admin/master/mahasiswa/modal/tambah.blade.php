@@ -9,7 +9,7 @@
                 <span aria-hidden="true">&times;</span>
               </button>
             </div>
-            {!! Form::open(['route'=>'admin.master.mahasiswa.store','id'=>'form-tambah-mhs']) !!}
+            {!! Form::open(['route'=>'admin.master.mahasiswa.store','id'=>'form-tambah-mhs','enctype'=>'multipart/form-data']) !!}
             <div class="modal-body">
                 <div class="form-group">
                     {!! Form::text('nama', '', ['class'=>'form-control form-control-alternative','placeholder'=>'Nama']) !!}
@@ -28,6 +28,17 @@
                 </div>
                 <div class="form-group">
                     {!! Form::text('tahun', '', ['class'=>'form-control form-control-alternative','placeholder'=>'Tahun']) !!}
+                </div>
+                <div class="form-group">
+                        {!! Form::label('foto', 'Foto') !!}
+                        {!! Form::file('foto', ['class' => 'form-control form-control-alternative']) !!}
+                        <small class="text-nowrap">File harus <strong>JPEG, JPG, PNG, & GIF</strong></small>
+                </div>
+                <div class="form-group">
+                        {!! Form::label('file', 'File') !!}
+                        {!! Form::file('file', ['class' => 'form-control form-control-alternative']) !!}
+                        <small class="text-nowrap">File harus <strong>PDF</strong></small>
+
                 </div>
             </div>
             <div class="modal-footer">

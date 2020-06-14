@@ -2,12 +2,16 @@
 
 namespace App\Http\Services\Mahasiswa;
 
+use App\Http\Inter\UploadAbstract;
+use App\Http\Tools\FileTrait;
 use App\Mahasiswa;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 
 class MahasiswaBaseService
 {
+    use FileTrait;
+
     private $request;
 
     public function __construct(Request $request)
@@ -70,6 +74,8 @@ class MahasiswaBaseService
     {
         $res = $this->request->validate($this->rules());
         $res['password'] = Hash::make($res['nim']);
+        $res['foto'] = $this->uploadFoto();
+        $res['file'] = $this->uploadFile();
         $mahasiswa = Mahasiswa::create($res);
         return $mahasiswa;
     }
@@ -91,15 +97,25 @@ class MahasiswaBaseService
             $mahasiswa->email = $this->request->email;
         }
 
+        if ($this->request->foto != null) {
+            $mahasiswa->foto = $this->uploadFoto($mahasiswa->foto);
+        }
+
+        if ($this->request->file != null) {
+            $mahasiswa->file = $this->uploadFile($mahasiswa->file);
+        }
+
         $mahasiswa->kelas = $this->request->kelas;
         $mahasiswa->nama = $this->request->nama;
         $mahasiswa->semester = $this->request->semester;
         $mahasiswa->tahun = $this->request->tahun;
+
         return $mahasiswa->saveOrFail();
     }
 
     public function delete(Mahasiswa $mahasiswa)
     {
+        $this->deleteFoto($mahasiswa->foto);
         $res = $mahasiswa->delete();
         return $res;
     }

@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Services\Mahasiswa\MahasiswaBaseService;
 use App\Mahasiswa;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 use Yajra\DataTables\DataTables;
 
 class MasterMahasiswaController extends Controller
@@ -50,11 +51,11 @@ class MasterMahasiswaController extends Controller
 
     public function store(Request $request)
     {
-        if ($request->hasFile('file')) {
-            $res = $this->mhsService->insertBatch();
-        } else {
+        // if ($request->hasFile('file')) {
+        //     $res = $this->mhsService->insertBatch();
+        // } else {
             $res = $this->mhsService->insert();
-        };
+        // };
         if ($res) {
             return redirect()->back()->withSuccess('Berhasil');
         }

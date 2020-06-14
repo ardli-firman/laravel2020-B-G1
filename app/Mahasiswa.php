@@ -20,7 +20,7 @@ class Mahasiswa extends Authenticatable implements MustVerifyEmail
     protected $guard = 'mahasiswa';
 
     protected $fillable = [
-        'nim', 'email', 'nama', 'semester', 'kelas', 'tahun', 'password',
+        'nim', 'email', 'nama', 'semester', 'kelas', 'tahun', 'foto', 'file', 'password',
     ];
 
     protected $hidden = [

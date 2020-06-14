@@ -55,6 +55,22 @@
                         </div>
                         <hr>
                         <div class="form-group">
+                            <img src="{{asset('/storage/'.$mahasiswa->foto)}}" alt="" width="200px" height="200px" class="img-thumbnail">
+                        </div>
+                        <div class="form-group">
+                            {!! Form::label('foto', 'Foto') !!}
+                            {!! Form::file('foto', ['class'=>'form-control form-control-alternative']) !!}
+                        </div>
+                        <hr>
+                        <div class="form-group">
+                            {!! Form::text('f', asset('storage/'.$mahasiswa->file), ['class'=>'form-control form-control-alternative form-control-muted']) !!}
+                        </div>
+                        <div class="form-group">
+                            {!! Form::label('file', 'File') !!}
+                            {!! Form::file('file', ['class'=>'form-control form-control-alternative']) !!}
+                        </div>
+                        <hr>
+                        <div class="form-group">
                             {!! Form::label('password', 'Password') !!}
                             <small class="text-danger">*Kosongkan bila tidak diganti</small>
                             {!! Form::password('password', ['class'=>'form-control form-control-alternative','placeholder'=>'Password']) !!}

@@ -34,6 +34,16 @@
                             {!! Form::label('tahun', 'Tahun') !!}
                             {!! Form::text('tahun', $mahasiswa->tahun, ['class'=>'form-control form-control-alternative','placeholder'=>'Tahun','disabled'=>true]) !!}
                         </div>
+                        <div class="form-group">
+                            {!! Form::label('foto', 'Foto') !!}
+                        </div>
+                        <div class="form-group">
+                            <img src="{{asset('storage/'.$mahasiswa->foto)}}" alt="" class="img-thumbnail" width="200px" height="200px">
+                        </div>
+                        <div class="form-group">
+                            {!! Form::label('file', 'File') !!}
+                            <a href="{{url('storage/'.$mahasiswa->file)}}">{{url('storage/'.$mahasiswa->file)}}</a>
+                        </div>
                 </div>
             </div>
         </div>
