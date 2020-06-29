@@ -4,6 +4,7 @@ namespace App\Http\Services\TugasAkhir;
 
 use App\JudulTugasAkhir;
 use App\Mahasiswa;
+use App\Notifications\StatusJudulTA;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -69,6 +70,8 @@ class TugasAkhirBaseService
     {
         $this->request->validate(['status_ta' => 'required']);
         $res = JudulTugasAkhir::where('nim', $nim)->update(['status_ta' => $this->request->status_ta]);
+        $mhs = Mahasiswa::find($nim);
+        $mhs->notify(new StatusJudulTA($mhs));
         return $res;
     }
 
