@@ -38,23 +38,25 @@
             <div class="row">
                 <div class="col">
                     <div class="card shadow">
-                        <div class="card-header">
-                            <div class="row">
-                                <div class="col-sm">
-                                    <h3 class="">Mahasiswa</h3>
+                        <div class="card-header border-0">
+                            <div class="row align-items-center">
+                                <div class="col-8">
+                                    <h3 class="mb-0">Mahasiswa</h3>
                                 </div>
-                            </div>
-                            <div class="row">
-                                <div class="col-12">
-                                    <a id="btn-tambah-mhs" data-toggle="modal" data-target="#tambahMahasiswa" href="" class="btn btn-sm btn-secondary text-green">
+                                <div class="col-4 text-right">
+                                    <a id="btn-tambah-kap" data-toggle="modal" data-target="#tambahMahasiswa" href="" class="btn btn-sm btn-primary text-white">
                                         Tambah Mahasiswa
                                     </a>
-                                    <a id="btn-tambah-batch" data-toggle="modal" data-target="#tambahBatch" href="" class="btn btn-sm btn-success">
+                                    <!-- <a id="btn-tambah-batch" data-toggle="modal" data-target="#tambahBatch" href="" class="btn btn-sm btn-success">
                                         Tambah batch
-                                    </a>
+                                    </a> -->
                                 </div>
                             </div>
                         </div>
+
+                         <!-- <a id="btn-tambah-batch" data-toggle="modal" data-target="#tambahBatch" href="" class="btn btn-sm btn-success">
+                                        Tambah batch
+                                    </a> -->
 
                         <div class="col-12"></div>
 
@@ -87,6 +89,8 @@
         document.getElementById("btn-tambah-mhs").addEventListener("click", function(){
             document.getElementById("form-tambah-mhs").reset();
         });
+        </script>
+        <script>
         $(function(){
             const table = $('.data-table').DataTable({
                 processing: true,

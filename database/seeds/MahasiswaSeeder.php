@@ -28,6 +28,8 @@ class MahasiswaSeeder extends Seeder
                 'kelas' =>  $faker->randomElement($kelas),
                 'tahun' => '2017',
                 'password' => Hash::make('f'),
+                'foto' => 'argon/img/theme/team-4-800x800.jpg',
+                'file' => 'argon/img/theme/team-4-800x800.jpg',
                 'email_verified_at' => now(),
                 'created_at' => now(),
                 'updated_at' => now()
