@@ -19,8 +19,8 @@ class CreateMahasiswasTable extends Migration
             $table->string('nama');
             $table->string('password');
             $table->timestamp('email_verified_at')->nullable();
-            $table->string('foto');
-            $table->string('file');
+            $table->string('foto')->nullable();
+            $table->string('file')->nullable();
             $table->rememberToken();
             $table->timestamps();
         });
