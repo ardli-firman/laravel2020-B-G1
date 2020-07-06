@@ -27,6 +27,8 @@
 -   Kembali ke cmd lalu ketik php artisan key:generate (Pada project laravel sintak)
 -   Lalu ketik kembali php artisan migrate --seed
 -   Untuk menjalankan ketik php artisan serve
+-   Seeder Judul TA ketik php artisan db:seed JudulTASeeder
+-   Seeder Pembimbimg ketik php artisan db:seed PembimbingSeeder
 
 ### LINUX
 -   Ke folder /lampp/htdocs 
@@ -39,6 +41,8 @@
 -   Kembali ke cmd lalu ketik php artisan key:generate (Pada project laravel sintak)
 -   Lalu ketik kembali php artisan migrate --seed
 -   Untuk menjalankan ketik php artisan serve
+-   Seeder Judul TA ketik php artisan db:seed JudulTASeeder
+-   Seeder Pembimbimg ketik php artisan db:seed PembimbingSeeder
 
 *note apabila terjadi eror setelah perintah " composer install ", silahkan ketikan "composer update"
 
