@@ -155,6 +155,11 @@
                         <i class="ni ni-planet text-blue"></i> {{ __('Pembimbing') }}
                     </a>
                 </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ route('kaprodi.dosen.index') }}">
+                        <i class="ni ni-planet text-blue"></i> {{ __('Dosen') }}
+                    </a>
+                </li>
                 @endauth
                 @auth("dosen")
                 {{-- Ngene nggo navbar Dosen --}}
