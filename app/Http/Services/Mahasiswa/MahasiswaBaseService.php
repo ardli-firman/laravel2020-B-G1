@@ -7,6 +7,7 @@ use App\Http\Tools\FileTrait;
 use App\Mahasiswa;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
+use App\Notifications\UpdateMahasiswaNotif;
 
 class MahasiswaBaseService
 {
@@ -109,6 +110,8 @@ class MahasiswaBaseService
         $mahasiswa->nama = $this->request->nama;
         $mahasiswa->semester = $this->request->semester;
         $mahasiswa->tahun = $this->request->tahun;
+
+        $mahasiswa->notify(new UpdateMahasiswaNotif($mahasiswa));
 
         return $mahasiswa->saveOrFail();
     }
