@@ -38,6 +38,29 @@ class MasterDosenController extends Controller
         return view('admin.master.dosen.index');
     }
 
+    public function indexDosen(Request $request)
+    {
+        // dd($this->dosenService->getDataTable());
+        if ($request->ajax()) {
+            $dosen = $this->dosenService->getDataTable();
+            return DataTables::of($dosen)
+                ->addIndexColumn()
+                ->editColumn('nama', function ($data) {
+                    return $data->nama;
+                })
+                ->editColumn('email', function ($data) {
+                    return $data->email;
+                })
+                ->addColumn('aksi', function ($data) {
+                    $btn = "<a href='" . route('kaprodi.dosen.show', $data->id) . "' class='btn btn-sm btn-primary'>Detail</a>";
+                    return $btn;
+                })
+                ->rawColumns(['aksi'])
+                ->make(true);
+        }
+        return view('kaprodi.dosen.index');   
+    }
+
     public function create()
     {
         //

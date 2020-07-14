@@ -70,6 +70,7 @@ Route::prefix('kaprodi')->name('kaprodi.')->middleware(['auth:kaprodi', 'verifie
     Route::get('/home', 'Kaprodi\HomeController@index')->name('home');
     Route::resource('/TA', 'Kaprodi\ListTAController');
     Route::resource('/pembimbing', 'Kaprodi\PembimbingController');
+    Route::resource('/dosen', 'Kaprodi\DosenKController');
     Route::resource('profile', 'Kaprodi\SettingUserProfileController');
 });
 
