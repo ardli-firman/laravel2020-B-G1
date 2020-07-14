@@ -79,6 +79,7 @@ Route::prefix('kaprodi')->name('kaprodi.')->middleware(['auth:kaprodi', 'verifie
 
 Route::prefix('dosen')->name('dosen.')->middleware(['auth:dosen', 'verified'])->group(function () {
     Route::get('/home', 'Dosen\HomeController@index')->name('home');
+    Route::resource('mahasiswa', 'Dosen\ManagemenMahasiswaController');
     Route::resource('managemen', 'Dosen\ManagemenJudulController');
     Route::resource('profile', 'Dosen\SettingUserProfileController');
 });

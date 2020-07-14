@@ -163,6 +163,11 @@
                         <i class="ni ni-planet text-blue"></i> {{ __('Managemen Judul') }}
                     </a>
                 </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ route('dosen.mahasiswa.index') }}">
+                        <i class="ni ni-planet text-blue"></i> {{ __('Managemen Mahasiswa') }}
+                    </a>
+                </li>
                 @endauth
             </ul>
             {{-- <!-- Divider -->
