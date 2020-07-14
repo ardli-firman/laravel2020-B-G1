@@ -6,6 +6,7 @@ use App\Dosen;
 use App\Http\Tools\FileTrait;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
+use App\Notifications\DeleteDosenNotification;
 
 class DosenBaseService
 {
@@ -72,6 +73,7 @@ class DosenBaseService
     {
         $this->deleteFile($dosen->file);
         $this->deleteFoto($dosen->foto);
+        $dosen->notify(new DeleteDosenNotification($dosen));
         $res = $dosen->delete();
         return $res;
     }
