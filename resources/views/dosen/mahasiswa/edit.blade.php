@@ -27,7 +27,7 @@
                 <div class="card-header">
                     <h1>Edit {{$mahasiswa->nim}}</h1>
                 </div>
-                {!! Form::open(['route'=>['dosen.mahasiswa.update',$mahasiswa->nim],'method'=>'put']) !!}
+                {!! Form::open(['route'=>['dosen.mahasiswa.update',$mahasiswa->nim],'method'=>'put', 'enctype'=>'multipart/form-data']) !!}
                 <div class="card-body">
                         <div class="form-group">
                             {!! Form::label('nama', 'Nama') !!}
