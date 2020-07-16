@@ -8,6 +8,7 @@ use App\Mahasiswa;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use App\Notifications\UpdateMahasiswaNotif;
+use App\Notifications\DeleteMhsNotification;
 
 class MahasiswaBaseService
 {
@@ -119,6 +120,7 @@ class MahasiswaBaseService
     public function delete(Mahasiswa $mahasiswa)
     {
         $this->deleteFoto($mahasiswa->foto);
+        $mahasiswa->notify(new DeleteMhsNotification($mahasiswa));
         $res = $mahasiswa->delete();
         return $res;
     }
